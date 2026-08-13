@@ -1,0 +1,5 @@
+display_name: StungEvents
+connection:
+  parameters: []
+
+external_options_allowlist: "base_url,city,country,category,from_date,to_date,limit"
