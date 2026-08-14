@@ -1,0 +1,9 @@
+[
+  {
+    "Uuid": "seminar-001",
+    "SiteUuid": "demo-site-001",
+    "Name": "Opening Keynote",
+    "Slug": "opening-keynote",
+    "isPublished": true
+  }
+]

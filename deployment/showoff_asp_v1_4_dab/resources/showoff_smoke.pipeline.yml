@@ -1,0 +1,19 @@
+resources:
+  pipelines:
+    showoff_smoke_pipeline:
+      name: "[dev ${var.catalog}] showoff-asp-v1-4-smoke"
+      catalog: ${var.catalog}
+      schema: ${var.schema}
+      serverless: true
+      development: true
+      channel: PREVIEW
+      libraries:
+        - file:
+            path: ../showoff_asp_v1_4_smoke_pipeline.py
+        - file:
+            path: ../_generated_showoff_asp_v1_4_python_source.py
+      configuration:
+        showoff.base_url: ${var.base_url}
+        showoff.api_key: ${var.api_key}
+        showoff.api_secret: ${var.api_secret}
+        showoff.site_uuid: ${var.site_uuid}
