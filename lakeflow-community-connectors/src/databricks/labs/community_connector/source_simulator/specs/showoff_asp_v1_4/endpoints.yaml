@@ -1,0 +1,28 @@
+# Official ShowOff v1.4 collection shape mirrored for local simulation.
+endpoints:
+  - path: /public/visitors
+    method: GET
+    corpus: visitors
+    response:
+      pagination_style: offset
+    params:
+      O: {role: offset}
+      L: {role: limit, default: 10, max: 1000}
+      SiteUuid: {role: ignore}
+      Q: {role: ignore}
+  - path: /public/exhibitors
+    method: GET
+    corpus: exhibitors
+    response:
+      pagination_style: offset
+    params:
+      O: {role: offset}
+      L: {role: limit, default: 10, max: 1000}
+  - path: /public/seminars
+    method: GET
+    corpus: seminars
+    response:
+      pagination_style: offset
+    params:
+      O: {role: offset}
+      L: {role: limit, default: 10, max: 1000}

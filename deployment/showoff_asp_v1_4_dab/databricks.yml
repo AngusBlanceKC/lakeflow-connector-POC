@@ -1,0 +1,23 @@
+bundle:
+  name: showoff-asp-v1-4-connector
+include:
+  - resources/*.yml
+variables:
+  catalog:
+    default: raw_angus
+  schema:
+    default: default
+  base_url:
+    default: http://127.0.0.1:8040
+  api_key:
+    default: demo-showoff-api-key
+  api_secret:
+    default: demo-showoff-api-secret
+  site_uuid:
+    default: demo-site-001
+targets:
+  dev:
+    mode: development
+    default: true
+    workspace:
+      host: https://adb-3990188733873176.16.azuredatabricks.net

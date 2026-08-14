@@ -1,0 +1,27 @@
+display_name: ShowOff ASP v1.4
+connection:
+  parameters:
+    - name: base_url
+      type: string
+      required: false
+      description: ShowOff API host or local simulator URL.
+    - name: api_key
+      type: string
+      required: true
+      secret: true
+      description: ShowOff API key.
+    - name: api_secret
+      type: string
+      required: true
+      secret: true
+      description: ShowOff API secret/password.
+    - name: site_uuid
+      type: string
+      required: false
+      description: Optional site filter.
+    - name: access_token
+      type: string
+      required: false
+      secret: true
+      description: Optional cached bearer token for tests.
+external_options_allowlist: "page_size,page_offset,site_uuid,query"

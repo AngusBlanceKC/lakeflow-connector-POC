@@ -1,0 +1,11 @@
+[
+  {
+    "Uuid": "visitor-0001",
+    "SiteUuid": "demo-site-001",
+    "FirstName": "Ada",
+    "LastName": "Lovelace",
+    "Email": "ada.lovelace@example.test",
+    "Company": "Analytical Engines Ltd",
+    "Status": "registered"
+  }
+]

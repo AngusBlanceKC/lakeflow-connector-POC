@@ -1,0 +1,98 @@
+{
+  "revision": 2,
+  "sites": [
+    {
+      "Uuid": "demo-site-001",
+      "Name": "ShowOff Demo Site",
+      "Slug": "showoff-demo",
+      "isActive": true
+    }
+  ],
+  "products": [
+    {
+      "Uuid": "product-001",
+      "Name": "ShowOff Demo Event",
+      "Code": "DEMO",
+      "isActive": true
+    }
+  ],
+  "exhibitors": [
+    {
+      "Uuid": "exhibitor-001",
+      "SiteUuid": "demo-site-001",
+      "Name": "Example Exhibitor",
+      "CompanyUuid": "company-001",
+      "isActive": true
+    }
+  ],
+  "seminars": [
+    {
+      "Uuid": "seminar-001",
+      "SiteUuid": "demo-site-001",
+      "Name": "Opening Keynote",
+      "Slug": "opening-keynote",
+      "isPublished": true
+    }
+  ],
+  "sessions": [
+    {
+      "Uuid": "session-001",
+      "SiteUuid": "demo-site-001",
+      "Name": "Opening Session",
+      "Start": "2026-09-01T09:00:00Z",
+      "End": "2026-09-01T10:00:00Z"
+    }
+  ],
+  "speakers": [
+    {
+      "Uuid": "speaker-001",
+      "SiteUuid": "demo-site-001",
+      "FirstName": "Ada",
+      "LastName": "Lovelace",
+      "Company": "Analytical Engines Ltd",
+      "JobTitle": "Mathematician"
+    }
+  ],
+  "visitors": [
+    {
+      "Uuid": "visitor-0001",
+      "SiteUuid": "demo-site-001",
+      "FirstName": "Deborah",
+      "LastName": "Charlton",
+      "Email": "deborah.charlton.1@example.test",
+      "Company": "Thomas Ltd",
+      "JobTitle": "Secondary school teacher",
+      "Status": "registered",
+      "Created": "2026-08-14T13:01:30.492259Z",
+      "Modified": "2026-08-14T13:01:30.492516Z",
+      "Generated": false
+    },
+    {
+      "Uuid": "visitor-0002",
+      "SiteUuid": "demo-site-001",
+      "FirstName": "Georgina",
+      "LastName": "Evans",
+      "Email": "georgina.evans.2@example.test",
+      "Company": "Cunningham Ltd",
+      "JobTitle": "Engineer, structural",
+      "Status": "registered",
+      "Created": "2026-08-14T13:01:30.492624Z",
+      "Modified": "2026-08-14T13:01:30.492627Z",
+      "Generated": false
+    },
+    {
+      "Uuid": "visitor-0003",
+      "SiteUuid": "demo-site-001",
+      "FirstName": "Margaret",
+      "LastName": "Thomas",
+      "Email": "margaret.thomas.3@example.test",
+      "Company": "Bond, Reynolds and Cunningham",
+      "JobTitle": "Accountant, chartered management",
+      "Status": "registered",
+      "Created": "2026-08-14T13:02:30.497479Z",
+      "Modified": "2026-08-14T13:02:30.497514Z",
+      "Generated": true
+    }
+  ],
+  "tombstones": []
+}

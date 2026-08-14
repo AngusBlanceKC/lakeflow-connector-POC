@@ -1,0 +1,8 @@
+[
+  {
+    "Uuid": "exhibitor-001",
+    "SiteUuid": "demo-site-001",
+    "Name": "Example Exhibitor",
+    "isActive": true
+  }
+]
