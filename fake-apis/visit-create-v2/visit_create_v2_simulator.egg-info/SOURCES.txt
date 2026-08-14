@@ -1,8 +1,0 @@
-README.md
-app.py
-pyproject.toml
-visit_create_v2_simulator.egg-info/PKG-INFO
-visit_create_v2_simulator.egg-info/SOURCES.txt
-visit_create_v2_simulator.egg-info/dependency_links.txt
-visit_create_v2_simulator.egg-info/requires.txt
-visit_create_v2_simulator.egg-info/top_level.txt
