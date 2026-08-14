@@ -1,0 +1,17 @@
+display_name: Visit Create v2
+connection:
+  parameters:
+    - name: api_key
+      type: string
+      required: true
+      secret: true
+      description: Visit Create API key used as the Basic Auth username.
+    - name: base_url
+      type: string
+      required: false
+      description: Visit Create v2 API root, including /create/v2.
+    - name: expo_id
+      type: string
+      required: true
+      description: Event/expo identifier to read.
+external_options_allowlist: "limit,from_revision,show_deleted,webhook_id,contact_reference,contact_id,registration_states"

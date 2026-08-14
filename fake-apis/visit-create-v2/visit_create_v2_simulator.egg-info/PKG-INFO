@@ -1,0 +1,7 @@
+Metadata-Version: 2.4
+Name: visit-create-v2-simulator
+Version: 0.1.0
+Requires-Python: >=3.10
+Requires-Dist: fastapi<1.0,>=0.110
+Requires-Dist: faker<40.0,>=25.0
+Requires-Dist: uvicorn[standard]<1.0,>=0.29

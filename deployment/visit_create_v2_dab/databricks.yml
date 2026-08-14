@@ -1,0 +1,29 @@
+bundle:
+  name: visit-create-v2-connector
+
+include:
+  - resources/*.yml
+
+variables:
+  catalog:
+    description: Unity Catalog catalog for Visit Create tables.
+    default: raw_angus
+  schema:
+    description: Unity Catalog schema for Visit Create tables.
+    default: default
+  base_url:
+    description: Public Visit Create v2 API root.
+    default: https://faced-switches-exclusive-suggested.trycloudflare.com/create/v2
+  api_key:
+    description: Visit Create API key used as the Basic Auth username.
+    default: demo-api-key
+  expo_id:
+    description: Visit Create expo/event identifier.
+    default: 0rwwipz7fufs1
+
+targets:
+  dev:
+    mode: development
+    default: true
+    workspace:
+      host: https://adb-3990188733873176.16.azuredatabricks.net
