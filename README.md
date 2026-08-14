@@ -4,6 +4,13 @@ Proof-of-concept work for evaluating and developing Lakeflow community connector
 
 The upstream Lakeflow community connectors repository is included under [`lakeflow-community-connectors/`](./lakeflow-community-connectors/).
 
+## Fake APIs
+
+Local FastAPI services used to simulate upstream APIs for connector development
+live under [`fake-apis/`](./fake-apis/). The Visit Create v2 simulator includes
+authentication, CRUD resources, revision-based reads, webhooks, permissions,
+event scoping, and configurable request limits. See its [README](./fake-apis/visit-create-v2/README.md).
+
 ## POC connectors
 
 ### StungEvents
