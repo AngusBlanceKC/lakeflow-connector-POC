@@ -1,0 +1,22 @@
+display_name: LiveBuzz
+connection:
+  parameters:
+    - name: base_url
+      type: string
+      required: true
+      description: Event-specific LiveBuzz API base URL.
+    - name: campaign
+      type: string
+      required: true
+      description: LiveBuzz campaign/event identifier.
+    - name: api_key
+      type: string
+      required: true
+      secret: true
+      description: Event-scoped LiveBuzz API key.
+    - name: bearer
+      type: string
+      required: false
+      secret: true
+      description: Optional legacy bearer credential.
+external_options_allowlist: "page_size,max_records_per_batch"

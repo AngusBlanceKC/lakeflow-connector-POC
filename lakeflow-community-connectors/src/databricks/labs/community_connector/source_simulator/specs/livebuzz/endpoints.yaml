@@ -1,0 +1,24 @@
+endpoints:
+  - name: exhibitors
+    method: GET
+    path: /campaign/{campaign}/api/exhibitors
+    response:
+      wrapper:
+        records_key: data
+      pagination_style: offset
+    params:
+      limit: {role: page_size}
+      offset: {role: offset}
+      since: {role: cursor, op: gt, field: updated_at}
+  - name: speakers
+    method: GET
+    path: /campaign/{campaign}/api/speakers
+    response: {wrapper: {records_key: data}, pagination_style: offset}
+  - name: sessions
+    method: GET
+    path: /campaign/{campaign}/api/sessions
+    response: {wrapper: {records_key: data}, pagination_style: offset}
+  - name: attendees
+    method: GET
+    path: /campaign/{campaign}/api/attendees
+    response: {wrapper: {records_key: data}, pagination_style: offset}

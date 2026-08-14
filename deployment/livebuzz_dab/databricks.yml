@@ -1,0 +1,17 @@
+bundle:
+  name: livebuzz-connector
+include:
+  - resources/*.yml
+variables:
+  catalog: {default: raw_angus}
+  schema: {default: default}
+  base_url: {default: http://127.0.0.1:8050}
+  campaign: {default: demo-event-2026}
+  api_key: {default: demo-livebuzz-api-key}
+targets:
+  dev:
+    mode: development
+    default: true
+    workspace:
+      host: https://adb-3990188733873176.16.azuredatabricks.net
+      profile: DEFAULT

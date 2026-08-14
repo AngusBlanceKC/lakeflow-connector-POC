@@ -1,0 +1,4 @@
+[project]
+name = "livebuzz-connector"
+version = "0.1.0"
+dependencies = ["requests"]

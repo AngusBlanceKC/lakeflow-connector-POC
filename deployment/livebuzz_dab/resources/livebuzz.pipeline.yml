@@ -1,0 +1,16 @@
+resources:
+  pipelines:
+    livebuzz_pipeline:
+      name: "[dev ${var.catalog}] livebuzz"
+      catalog: ${var.catalog}
+      schema: ${var.schema}
+      serverless: true
+      development: true
+      channel: PREVIEW
+      libraries:
+        - file: {path: ../livebuzz_pipeline.py}
+        - file: {path: ../_generated_livebuzz_python_source.py}
+      configuration:
+        livebuzz.base_url: ${var.base_url}
+        livebuzz.campaign: ${var.campaign}
+        livebuzz.api_key: ${var.api_key}

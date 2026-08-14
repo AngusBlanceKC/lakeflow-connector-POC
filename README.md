@@ -14,7 +14,7 @@ event scoping, and configurable request limits. See its [README](./fake-apis/vis
 ## POC connector
 
 The current proof-of-concept connectors include Visit Create v2, Fusion
-(Circdata), GEVME, FairVerify Ticketdata v2, and ShowOff ASP v1.4. Their source, schemas, generated Lakeflow sources, and API
+(Circdata), GEVME, FairVerify Ticketdata v2, ShowOff ASP v1.4, and LiveBuzz. Their source, schemas, generated Lakeflow sources, and API
 documentation are under
 [`lakeflow-community-connectors/src/databricks/labs/community_connector/sources/visit_create_v2/`](./lakeflow-community-connectors/src/databricks/labs/community_connector/sources/visit_create_v2/).
 
@@ -32,3 +32,7 @@ and [`fake-apis/fairverify-ticketdata-v2/`](./fake-apis/fairverify-ticketdata-v2
 The ShowOff ASP v1.4 source and simulator are under
 [`lakeflow-community-connectors/src/databricks/labs/community_connector/sources/showoff_asp_v1_4/`](./lakeflow-community-connectors/src/databricks/labs/community_connector/sources/showoff_asp_v1_4/)
 and [`fake-apis/showoff-asp-v1-4/`](./fake-apis/showoff-asp-v1-4/).
+
+The LiveBuzz source and simulator are under
+[`lakeflow-community-connectors/src/databricks/labs/community_connector/sources/livebuzz/`](./lakeflow-community-connectors/src/databricks/labs/community_connector/sources/livebuzz/)
+and [`fake-apis/livebuzz/`](./fake-apis/livebuzz/).

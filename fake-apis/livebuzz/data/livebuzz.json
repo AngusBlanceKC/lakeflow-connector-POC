@@ -1,0 +1,178 @@
+{
+  "campaign": "demo-event-2026",
+  "records": {
+    "exhibitors": [
+      {
+        "id": "exh-0001",
+        "identifier": "LB-EXH-0001",
+        "companyName": "Analytical Engines",
+        "logo": "/assets/exh-0001.png",
+        "description": "Data and event technology",
+        "telephone": "+44 20 0000 0001",
+        "emailAddress": "hello@example.test",
+        "websiteUrl": "https://example.test",
+        "stands": [
+          "E09"
+        ],
+        "addresses": [
+          {
+            "line_1": "1 Example Street",
+            "line_2": "",
+            "line_3": "",
+            "city": "London",
+            "county": "London",
+            "region": "England",
+            "country": "GB"
+          }
+        ],
+        "socialMediaChannels": [
+          {
+            "type": "website",
+            "url": "https://example.test"
+          }
+        ],
+        "status": "active",
+        "updated_at": "2026-01-15T10:00:00Z"
+      }
+    ],
+    "speakers": [
+      {
+        "id": "spk-0001",
+        "firstName": "Ada",
+        "lastName": "Lovelace",
+        "companyName": "Analytical Engines",
+        "jobTitle": "Mathematician",
+        "emailAddress": "ada@example.test",
+        "biography": "A keynote speaker.",
+        "updated_at": "2026-01-15T10:00:00Z"
+      }
+    ],
+    "sessions": [
+      {
+        "id": "ses-0001",
+        "title": "Future of Events",
+        "description": "A demo session",
+        "start": "2026-06-15T09:00:00Z",
+        "end": "2026-06-15T10:00:00Z",
+        "location": "Hall A",
+        "track": "Main stage",
+        "speaker_ids": [
+          "spk-0001"
+        ],
+        "updated_at": "2026-01-15T10:00:00Z"
+      }
+    ],
+    "attendees": [
+      {
+        "id": "att-0001",
+        "firstName": "Grace",
+        "lastName": "Hopper",
+        "emailAddress": "grace@example.test",
+        "companyName": "Compilers Ltd",
+        "jobTitle": "Engineer",
+        "status": "registered",
+        "registered_at": "2026-01-10T09:00:00Z",
+        "updated_at": "2026-01-15T10:00:00Z"
+      },
+      {
+        "id": "att-0002",
+        "firstName": "Terence",
+        "lastName": "Newton",
+        "emailAddress": "younggrace@example.net",
+        "companyName": "Burton, Allen and Gray",
+        "jobTitle": "Recycling officer",
+        "status": "registered",
+        "registered_at": "2026-01-11T09:00:00Z",
+        "updated_at": "2026-01-12T09:00:00Z"
+      },
+      {
+        "id": "att-0003",
+        "firstName": "Kate",
+        "lastName": "Williams",
+        "emailAddress": "flynnjamie@example.com",
+        "companyName": "Power Ltd",
+        "jobTitle": "Recycling officer",
+        "status": "registered",
+        "registered_at": "2026-01-11T09:00:00Z",
+        "updated_at": "2026-01-13T09:00:00Z"
+      },
+      {
+        "id": "att-0004",
+        "firstName": "Josephine",
+        "lastName": "McLean",
+        "emailAddress": "wsmith@example.com",
+        "companyName": "Lewis, Wallis and Cook",
+        "jobTitle": "Surveyor, hydrographic",
+        "status": "registered",
+        "registered_at": "2026-01-11T09:00:00Z",
+        "updated_at": "2026-01-14T09:00:00Z"
+      },
+      {
+        "id": "att-0005",
+        "firstName": "Shannon",
+        "lastName": "Harris",
+        "emailAddress": "pdale@example.net",
+        "companyName": "Mellor, Jennings and Ellis",
+        "jobTitle": "Medical physicist",
+        "status": "registered",
+        "registered_at": "2026-01-11T09:00:00Z",
+        "updated_at": "2026-01-15T09:00:00Z"
+      },
+      {
+        "id": "att-0006",
+        "firstName": "Bethany",
+        "lastName": "Oliver",
+        "emailAddress": "jball@example.com",
+        "companyName": "Field PLC",
+        "jobTitle": "Recycling officer",
+        "status": "registered",
+        "registered_at": "2026-01-11T09:00:00Z",
+        "updated_at": "2026-01-16T09:00:00Z"
+      },
+      {
+        "id": "att-0007",
+        "firstName": "Patricia",
+        "lastName": "Bell",
+        "emailAddress": "emily97@example.net",
+        "companyName": "Nelson, Allen and Miller",
+        "jobTitle": "Artist",
+        "status": "registered",
+        "registered_at": "2026-01-11T09:00:00Z",
+        "updated_at": "2026-01-17T09:00:00Z"
+      },
+      {
+        "id": "att-0008",
+        "firstName": "Geraldine",
+        "lastName": "Norris",
+        "emailAddress": "edwardsanne@example.com",
+        "companyName": "Jones and Sons",
+        "jobTitle": "Community development worker",
+        "status": "registered",
+        "registered_at": "2026-01-11T09:00:00Z",
+        "updated_at": "2026-01-18T09:00:00Z"
+      },
+      {
+        "id": "att-0009",
+        "firstName": "Kayleigh",
+        "lastName": "Harrison",
+        "emailAddress": "iedwards@example.com",
+        "companyName": "Ahmed, Turner and French",
+        "jobTitle": "Retail banker",
+        "status": "registered",
+        "registered_at": "2026-01-11T09:00:00Z",
+        "updated_at": "2026-01-19T09:00:00Z"
+      },
+      {
+        "id": "att-0010",
+        "firstName": "Amelia",
+        "lastName": "Jones",
+        "emailAddress": "swilliams@example.com",
+        "companyName": "Rhodes Ltd",
+        "jobTitle": "Therapist, speech and language",
+        "status": "registered",
+        "registered_at": "2026-01-11T09:00:00Z",
+        "updated_at": "2026-01-20T09:00:00Z"
+      }
+    ]
+  }
+}

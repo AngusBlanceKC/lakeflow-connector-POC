@@ -21,6 +21,8 @@ limits, resilience, and test/documentation expectations.
   inferred FairVerify Ticketdata v2 simulator for event tickets and scans.
 - [`showoff-asp-v1-4`](showoff-asp-v1-4/README.md) — an ASP ShowOff API v1.4
   simulator with Basic-to-Bearer authentication and paginated resources.
+- [`livebuzz`](livebuzz/README.md) — a LiveBuzz event API simulator for
+  exhibitors, speakers, sessions, and attendees.
 - [`cloudflare`](cloudflare/README.md) — notes and configuration examples for
   exposing a local fake API through a Cloudflare Quick Tunnel.
 

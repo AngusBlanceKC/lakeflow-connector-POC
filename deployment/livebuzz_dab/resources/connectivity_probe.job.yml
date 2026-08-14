@@ -1,0 +1,19 @@
+resources:
+  jobs:
+    livebuzz_connectivity_probe:
+      name: "[dev ${var.catalog}] livebuzz-connectivity-probe"
+      tasks:
+        - task_key: probe
+          spark_python_task:
+            python_file: ../connectivity_probe.py
+            parameters:
+              - --base-url
+              - ${var.base_url}
+              - --campaign
+              - ${var.campaign}
+              - --api-key
+              - ${var.api_key}
+          new_cluster:
+            spark_version: 15.4.x-scala2.12
+            node_type_id: Standard_DS3_v2
+            num_workers: 0
