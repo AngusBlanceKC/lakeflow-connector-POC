@@ -1,0 +1,20 @@
+resources:
+  pipelines:
+    gevme_pipeline:
+      name: "[dev ${var.catalog}] gevme"
+      catalog: ${var.catalog}
+      schema: ${var.schema}
+      serverless: true
+      development: true
+      channel: PREVIEW
+      libraries:
+        - file:
+            path: ../gevme_pipeline.py
+        - file:
+            path: ../_generated_gevme_python_source.py
+      configuration:
+        gevme.base_url: ${var.base_url}
+        gevme.event_id: ${var.event_id}
+        gevme.access_token: ${var.access_token}
+        gevme.client_id: ${var.client_id}
+        gevme.client_secret: ${var.client_secret}

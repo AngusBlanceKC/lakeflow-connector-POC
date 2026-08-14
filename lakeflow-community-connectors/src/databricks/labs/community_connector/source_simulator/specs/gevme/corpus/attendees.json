@@ -1,0 +1,18 @@
+[
+  {
+    "id": "attendee-0001",
+    "event_id": "demo-event-001",
+    "email": "ada.lovelace@example.test",
+    "first_name": "Ada",
+    "last_name": "Lovelace",
+    "full_name": "Ada Lovelace",
+    "company": "Analytical Engines Ltd",
+    "job_title": "Mathematician",
+    "country": "GB",
+    "status": "registered",
+    "checked_in": false,
+    "created_at": "2026-01-01T09:00:00Z",
+    "updated_at": "2026-01-01T09:00:00Z",
+    "generated": false
+  }
+]

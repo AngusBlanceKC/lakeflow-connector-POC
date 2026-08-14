@@ -1,0 +1,14 @@
+# Local simulator contract for the GEVME attendee connector.
+endpoints:
+  - path: /apiv2/api/events/{event_id}/attendees
+    method: GET
+    corpus: attendees
+    response:
+      pagination_style: offset
+      wrapper:
+        records_key: items
+    params:
+      limit: {role: limit, default: 1000, max: 1000}
+      offset: {role: offset}
+      modifiedFrom: {role: ignore}
+      where[email]: {role: ignore}
