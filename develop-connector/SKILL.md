@@ -11,6 +11,22 @@ the fake API. It delegates connector-specific work to the existing skills in
 `lakeflow-community-connectors/.claude/skills/` instead of copying their
 implementation rules into this file.
 
+## Invocation
+
+Call it with the connector/source name as the first argument:
+
+```text
+/develop-connector <connector-name>
+/develop-connector <connector-name> tables=table_a,table_b doc=https://docs.example.com/api
+```
+
+Parse `<connector-name>` as the nested Lakeflow source package name. Derive a
+filesystem-safe `<source_slug>` for `fake-apis/<source_slug>/` and
+`deployment/<source_slug>_dab/`. If the name is missing, stop and ask for it.
+Carry `tables=` and `doc=` through to `/research-source-api` and every delegated
+phase. Run the phases sequentially because each skill consumes artifacts from
+the previous one.
+
 Read [references/fake-api-contract.md](references/fake-api-contract.md) before
 creating or reviewing a simulator.
 
