@@ -46,6 +46,16 @@ def test_reads_revision_pages_and_uses_basic_auth():
     assert connector.list_tables()[0] == "expos"
 
 
+def test_accepts_none_on_first_framework_read():
+    connector = VisitCreateV2LakeflowConnect({"expo_id": "expo-1"})
+    connector._session = FakeSession()
+
+    records, offset = connector.read_table("expos", None, {})
+
+    assert list(records)[0]["id"] == "visitor-1"
+    assert offset == {"revision": 12}
+
+
 def test_resumes_from_offset_and_maps_filters():
     connector = VisitCreateV2LakeflowConnect({"expo_id": "expo-1"})
     session = FakeSession()

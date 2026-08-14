@@ -54,7 +54,15 @@ TABLE_SCHEMAS["webhooks"] = _schema(
     ("url", StringType(), True),
 )
 TABLE_METADATA = {
-    table: {"primary_keys": ["id"], "cursor_field": "revision", "ingestion_type": "incremental"}
+    table: {
+        "primary_keys": ["id"],
+        "cursor_field": "revision",
+        "ingestion_type": "cdc",
+    }
     for table in SUPPORTED_TABLES
 }
-TABLE_METADATA["webhooks"]["cursor_field"] = None
+TABLE_METADATA["webhooks"] = {
+    "primary_keys": ["id"],
+    "cursor_field": None,
+    "ingestion_type": "snapshot",
+}

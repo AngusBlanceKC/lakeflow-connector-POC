@@ -48,6 +48,7 @@ class VisitCreateV2LakeflowConnect(LakeflowConnect):
     ) -> tuple[Iterator[dict], dict]:
         self._validate_table(table_name)
         limit = min(max(int(table_options.get("limit", "100")), 1), self._MAX_PAGE_SIZE)
+        start_offset = start_offset or {}
         from_revision = int(start_offset.get("revision", table_options.get("from_revision", "0")))
         params = {"limit": str(limit), "fromRevision": str(from_revision)}
         if table_name != "expos":
