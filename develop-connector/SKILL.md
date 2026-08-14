@@ -1,257 +1,207 @@
 ---
 name: develop-connector
-description: Research an upstream API and build a production-shaped Databricks Lakeflow community connector plus a persistent local FastAPI simulator and Databricks Asset Bundle. Use this whenever the user asks to develop, copy, simulate, ingest from, or deploy a connector for an API, especially when they mention `/develop-connector`, Lakeflow community connectors, Delta Live Tables, Databricks, FastAPI, Faker, Cloudflare Tunnel, or a local API that Databricks must reach.
-compatibility: Requires a git repository, Python/uv, the Lakeflow community connector source tree, and optionally the Databricks CLI. Internet access is needed for API research; Databricks deployment also needs an authenticated CLI profile and a publicly reachable HTTPS API URL.
+description: Orchestrate an end-to-end API connector build: research a source, create a realistic persistent FastAPI simulator, delegate connector work to the Lakeflow repository skills, test and self-review it, and deploy it as a Databricks pipeline. Use whenever the user asks for `/develop-connector`, `/validate-connector`, `/self-review-connector`, API replication, a fake API, Lakeflow/community connector work, Databricks deployment, Cloudflare reachability, Faker data, or an API connector copied into the repository.
+compatibility: Requires this repository, the nested `lakeflow-community-connectors` checkout, Python/uv, and optionally an authenticated Databricks CLI. Internet access is needed for API research; live auth and deployment are sequential gates.
 ---
 
-# Develop Connector
+# Develop Connector: workflow orchestrator
 
-Build an end-to-end connector proof of concept that behaves like a real API
-integration: researched source contract, local simulator, Lakeflow connector,
-Databricks bundle, connectivity probe, tests, and documented run commands.
+This skill is the project-level coordinator. It owns the end-to-end workflow and
+the fake API. It delegates connector-specific work to the existing skills in
+`lakeflow-community-connectors/.claude/skills/` instead of copying their
+implementation rules into this file.
 
-## Operating principles
+Read [references/fake-api-contract.md](references/fake-api-contract.md) before
+creating or reviewing a simulator.
 
-- Start with the API's primary documentation, OpenAPI specification, SDK, or
-  source repository. Record what is documented and label reasonable inferences.
-- Treat the Lakeflow connector as framework code. Databricks executes the
-  generated/merged connector through its Lakeflow runtime; it does not merely
-  run the handwritten Python file as an ordinary script.
-- Keep the simulator and connector in parallel, predictable locations. Use a
-  stable local data file so Faker-generated records survive restarts.
-- Make progress with safe assumptions, but do not commit secrets, tunnel tokens,
-  access tokens, or unrelated dirty-worktree changes.
-- Prefer serverless Lakeflow pipelines for the first deployment. A classic
-  cluster stuck in Azure capacity acquisition is an infrastructure problem,
-  not evidence that the connector or API is broken.
+## Required repository locations
 
-## Repository layout
-
-For an API slug such as `visit_create_v2`, create or update:
+For source name `<source_name>` and API slug `<source_slug>`:
 
 ```text
-fake-apis/
-  README.md
-  <api-dir>/
-    README.md
-    app.py
-    pyproject.toml
-    uv.lock
-    data/<api>.json
-    tests/                         # if simulator-specific tests are useful
-
-lakeflow-community-connectors/src/databricks/labs/community_connector/sources/<api_slug>/
-  __init__.py
-  connector_spec.yaml
-  pyproject.toml
-  README.md
-  <api_slug>_api_doc.md
-  <api_slug>_schemas.py
-  <api_slug>.py
-  _generated_<api_slug>_python_source.py
-
-lakeflow-community-connectors/tests/unit/sources/<api_slug>/
-  test_<api_slug>_lakeflow_connect.py
-
-deployment/<api_slug>_dab/
-  databricks.yml
-  README.md
-  <api_slug>_pipeline.py
-  <api_slug>_smoke_pipeline.py
-  _generated_<api_slug>_python_source.py
-  connectivity_probe.py
-  resources/<api_slug>.pipeline.yml
-  resources/<api_slug>_smoke.pipeline.yml
-  resources/connectivity_probe.job.yml
-
-develop-connector/README.md       # workflow notes, when useful
+fake-apis/<source_slug>/
+lakeflow-community-connectors/src/databricks/labs/community_connector/sources/<source_name>/
+lakeflow-community-connectors/tests/unit/sources/<source_name>/
+deployment/<source_slug>_dab/
 ```
 
-Use the repository's existing naming and package conventions if they differ.
-Do not duplicate a generated source by hand: regenerate it with the repository
-merge script, then copy the generated file into the DAB.
+The connector repository is the source of truth for Lakeflow package layout,
+interfaces, tests, generated-source merging, and connector documentation.
 
-## Phase 1: inspect and branch
+## Delegate to the existing connector skills
 
-1. Read `AGENTS.md`, repository READMEs, connector templates, and the existing
-   source interface before editing.
-2. Check `git status --short`, current branch, remotes, and relevant history.
-3. Create a focused branch such as `agent/<api-slug>-connector`. Preserve
-   unrelated user changes; do not reset, stash, or delete them implicitly.
-4. Identify the exact API base URL, credentials, target resources, and desired
-   deployment catalog/schema. If credentials are missing, use placeholders and
-   document the required environment/config values.
+Use the corresponding skill or command from the nested connector repository in
+the phase where it is listed. Pass the source name, table scope, relevant paths,
+and artifacts already produced. Read the target `SKILL.md` before invoking it.
 
-## Phase 2: research the API
+| Workflow phase | Delegate to | Expected output |
+|---|---|---|
+| Research READ APIs | `/research-source-api <source>` | `sources/<source>/<source>_api_doc.md` |
+| Collect credentials | `/authenticate-source <source>` | interactive auth and `tests/unit/sources/<source>/configs/dev_config.json` |
+| Implement connector | `/implement-connector <source>` | `sources/<source>/<source>.py` and schemas/tests as appropriate |
+| Run/fix tests | `/test-and-fix-connector <source>` | passing simulate or record-mode pytest suite |
+| Public docs | `/create-connector-document <source>` | `sources/<source>/README.md` |
+| Connector spec | `/generate-connector-spec <source>` | `sources/<source>/connector_spec.yaml` |
+| Deploy connector | `/deploy-connector <source>` | configured/running Databricks pipeline |
+| Research write APIs | `/research-write-api-of-source <source>` | documented write-back contract |
+| Implement write-back tests | `/write-back-testing <source>` | source-specific write utilities/tests |
+| Validate completed connector | `/validate-connector <source>` | auth, live tests, optional deployment gate |
+| Self-review completed connector | `/self-review-connector <source>` | scored `tests/unit/sources/<source>/SELF_REVIEW.md` |
 
-Research and record, per resource:
+The exact skill files live under:
 
-- base URL and versioning;
-- authentication scheme, credential names, headers, and error responses;
-- resource paths, HTTP methods, request parameters, filters, and response shape;
-- pagination and ordering;
-- stable primary key and change cursor/revision semantics;
-- deletes, tombstones, webhooks, and whether reads are snapshot, append, or CDC;
-- rate limits, retry headers, timeouts, idempotency, and relevant status codes;
-- nested objects, nullable fields, enums, timestamps, and type conversions.
-
-Use official API documentation as the source of truth. If the public docs are
-incomplete, inspect SDK behavior or carefully test the live API and document
-the inference. Keep a concise API reference in `<api_slug>_api_doc.md`.
-
-## Phase 3: build the FastAPI simulator
-
-Create a lightweight simulator that is useful for connector development rather
-than a toy endpoint:
-
-- expose `/health` without authentication and return a small JSON success body;
-- implement the researched resource paths and representative filters;
-- implement the researched auth model. For Basic auth, the Visit Create
-  pattern is an API key as the username with an empty password;
-- return realistic HTTP errors, pagination, cursor/revision behavior, deletes,
-  and rate-limit headers where the real API has them;
-- use a low-frequency Faker generator (for example, one small batch at startup
-  or every few minutes) instead of a tight loop that consumes the machine;
-- persist generated records in JSON/CSV under `data/`; load and update the file
-  atomically enough for local use, and make IDs/cursors stable across restarts;
-- include a simulator README with install, start, credentials, endpoint, and
-  reset-data commands. Never put real credentials in source control.
-
-Run it locally and test both `/health` and at least one authenticated resource.
-If a browser visits a resource URL and receives `{"detail":"Not Found"}`,
-that is normally a path mismatch, not an authentication failure; confirm the
-exact API path with `curl` and the simulator's route list.
-
-## Phase 4: implement the Lakeflow connector
-
-Follow the repository's `LakeflowConnect` contract and templates. The source
-should include:
-
-- constructor option parsing with explicit defaults and no secrets in logs;
-- `list_tables`, `get_table_schema`, `read_table_metadata`, and `read_table`;
-- one schema and metadata entry per supported resource;
-- a bounded request page size and request timeout;
-- retries for 429/5xx responses, honoring a valid `Retry-After` value and
-  backing off with a hard maximum;
-- response validation before yielding records;
-- stable primary keys and correct offset/cursor progression;
-- filters mapped to the API's exact parameter names;
-- a clear `ValueError` for unsupported tables.
-
-Important Lakeflow contract detail: the framework passes `start_offset=None` on
-the first read. Normalize it before accessing fields, for example:
-
-```python
-start_offset = start_offset or {}
-from_revision = int(start_offset.get("revision", table_options.get("from_revision", "0")))
+```text
+lakeflow-community-connectors/.claude/skills/
+lakeflow-community-connectors/.claude/commands/validate-connector.md
+lakeflow-community-connectors/.claude/commands/develop-connector.md
 ```
 
-Use only ingestion metadata values supported by the installed framework, such
-as `snapshot`, `append`, `cdc`, or `cdc_with_deletes`. Do not invent an
-`incremental` ingestion type. Use snapshot metadata for resources without a
-reliable cursor, and CDC metadata only when the API's cursor/delete behavior
-supports it.
+Do not implement a second connector framework in this project skill. If the
+nested repository changes its Lakeflow contract, follow its skill and templates.
 
-Add focused unit tests for first-read `None`, subsequent offsets, pagination,
-filters, auth, retries, invalid responses, and unsupported tables. Then run the
-repository's merge script, typically:
+## End-to-end sequence
 
-```bash
-python3 tools/scripts/merge_python_source.py <api_slug>
-cp src/databricks/labs/community_connector/sources/<api_slug>/_generated_<api_slug>_python_source.py \
-  ../../deployment/<api_slug>_dab/_generated_<api_slug>_python_source.py
-```
+### 1. Establish scope safely
 
-## Phase 5: create the Databricks Asset Bundle
+- Read repository instructions and the nested connector repository's relevant
+  skill files.
+- Inspect `git status --short`, branch, remotes, and existing source artifacts.
+- Use a focused branch unless the user explicitly asks to work directly on
+  `main`. Preserve unrelated dirty files and never reset or stash them without
+  permission.
+- Normalize names: keep the upstream source name for the connector package and
+  use a filesystem-safe slug for `fake-apis/` and `deployment/`.
+- Identify source URL/docs, resources, target catalog/schema, and whether the
+  user wants simulated-only, live validation, write-back, or deployment.
 
-The DAB should deploy Lakeflow assets, not a standalone Python process:
+### 2. Research the source first
 
-- configure the target host, catalog, schema, public API base URL, and API key
-  as variables or target overrides;
-- default to `serverless: true` for pipeline resources;
-- make the main pipeline register one materialized view/table per connector
-  resource;
-- add a one-resource smoke pipeline for fast debugging;
-- include `connectivity_probe.py`, a dependency-free Python job that tests DNS,
-  HTTPS, `/health`, and one authenticated API request from Databricks itself;
-- include a DAB job resource for the probe and document bundle-root commands.
+Delegate READ research to `/research-source-api`. The API document must cover
+authentication, endpoints, parameters, response schemas, pagination, ordering,
+primary keys, cursors/revisions, deletes, rate limits, errors, and known gaps.
+Use official docs first and label inferences. If write-back is in scope, run
+`/research-write-api-of-source` separately; do not mix undocumented writes into
+the READ contract.
 
-Use the Databricks CLI from the directory containing `databricks.yml`:
+### 3. Build the fake API in parallel with the contract
 
-```bash
-databricks auth profiles
-databricks current-user me --profile DEFAULT
-databricks bundle validate -t dev --profile DEFAULT
-databricks bundle deploy -t dev --profile DEFAULT
-databricks bundle run <api_slug>_smoke_pipeline -t dev --profile DEFAULT
-databricks bundle run <api_slug>_pipeline -t dev --profile DEFAULT
-```
+Create `fake-apis/<source_slug>/` as a FastAPI simulator matching the researched
+API. Apply every item in the fake API contract reference. At minimum it must:
 
-If OAuth is stale, reauthenticate explicitly with
-`databricks auth login --profile DEFAULT`; retry without forcing plaintext
-storage unless the local CLI setup requires it.
+- have an unauthenticated `/health` endpoint;
+- implement realistic resource paths, auth, permissions, filters, pagination,
+  cursors, deletes/tombstones, and representative errors;
+- persist state in `data/*.json`, `*.csv`, or `*.jsonl` and retain it between
+  process restarts using atomic writes;
+- seed deterministic baseline records so tests are reproducible;
+- use Faker only in bounded, low-frequency batches with a hard cap and an
+  environment-configurable interval; never run an unbounded tight generator;
+- expose configuration through environment variables and document defaults;
+- include a README with install/start commands, credentials, endpoint examples,
+  reset-data instructions, and Cloudflare guidance;
+- include simulator tests or smoke commands for health, auth, pagination,
+  persistence, rate limits, and one write/delete path when supported.
 
-## Phase 6: make a local API reachable from Databricks
+Run the simulator locally before the connector tests. A browser 404 such as
+`{"detail":"Not Found"}` usually means the URL path is wrong, not that auth
+failed. Check the exact route and use `curl` with the documented credentials.
 
-Databricks serverless cannot reach `127.0.0.1` on the developer machine. A
-Cloudflare Quick Tunnel is sufficient for short-lived testing and does not
-require buying a domain:
+### 4. Delegate connector implementation and artifacts
+
+Run the existing skills in dependency order:
+
+1. `/implement-connector <source>`
+2. `/generate-connector-spec <source>`
+3. `/create-connector-document <source>`
+4. `/test-and-fix-connector <source>` in `simulate` mode
+
+The nested repository's `LakeflowConnect` contract governs offsets, schemas,
+metadata, and generated source. In particular, the first Lakeflow read can pass
+`start_offset=None`; the implementation must normalize that before reading
+offset fields. Do not invent metadata values such as `incremental`; use values
+supported by the installed framework. Regenerate merged source using the
+nested repository's tooling and copy it to the DAB only after the source passes.
+
+If the API supports writes and the user requested them, run research-write,
+write-back-testing, and test-and-fix after READ behavior is stable.
+
+### 5. Authenticate and validate against the live source when requested
+
+Run `/authenticate-source <source>` only when live tests are requested or
+required. It owns the browser credential flow and writes the dev config in the
+nested repository's expected location. Never commit that file or echo secrets.
+Then run `/validate-connector <source>`, which owns record-mode tests, drift
+validation, and optional deployment gates.
+
+### 6. Create the Databricks deployment layer
+
+Use `/deploy-connector <source>` for the connector repository's native pipeline
+deployment. For this project's realistic local-source POC, also create a DAB at
+`deployment/<source_slug>_dab/` containing:
+
+- `databricks.yml` with target, catalog/schema, public API URL, and secret
+  references or placeholders;
+- a main Lakeflow pipeline with one materialized view/table per resource;
+- a one-resource smoke pipeline;
+- a dependency-free Databricks-side connectivity probe job;
+- the regenerated connector source and a README with bundle-root commands.
+
+The DAB deploys Lakeflow assets; it is not a way to run the connector as an
+ordinary local Python process. Prefer serverless for the first run.
+
+### 7. Make local APIs reachable from Databricks
+
+Databricks cannot call the developer machine's `127.0.0.1`. For short-lived
+testing, use a Cloudflare Quick Tunnel without buying a domain:
 
 ```bash
 cloudflared tunnel --url http://127.0.0.1:8000
 ```
 
-Use the generated `https://<random>.trycloudflare.com` URL in the DAB variable,
-keep the tunnel terminal running, and document the procedure under
-`fake-apis/cloudflare/`. The URL is temporary and has no production uptime
-guarantee. A named tunnel or a hosted service is appropriate for persistent
-testing.
+Document the generated URL procedure under `fake-apis/cloudflare/`. Keep the
+tunnel process running; its `trycloudflare.com` URL is temporary and not a
+production endpoint.
 
-The decisive network test must run from Databricks, not only from the laptop:
+Always separate network debugging from connector debugging:
 
-1. `curl` locally against the public tunnel URL.
-2. Run the pure-Python DAB probe from Databricks.
-3. Test `/health` at the root health path. If the API base is
-   `/create/v2`, do not assume `/create/v2/health` exists; strip the API path
-   or configure an explicit health URL.
-4. Test the authenticated resource endpoint with the documented auth format.
-5. Only after the probe passes, debug Lakeflow connector behavior.
+1. `curl` the public tunnel locally.
+2. Run the pure-Python probe from Databricks to verify DNS, TLS, `/health`, and
+   one authenticated resource request.
+3. If the API base is `/create/v2`, test `/health` at the root unless the
+   simulator explicitly exposes `/create/v2/health`; do not infer the health
+   path from the resource base path.
+4. Only after the Databricks-side probe passes, run the smoke pipeline.
 
-This separates DNS/TLS/tunnel/auth failures from connector-runtime failures.
+This catches the key failure mode where local curl works but Databricks cannot
+reach localhost, and the reverse failure mode where the API is reachable but
+the Lakeflow first-read contract is wrong.
 
-## Phase 7: debug like the Lakeflow runtime
+### 8. Debug and verify in order
 
-Use this order when a pipeline fails:
+Use the narrowest reproduction first:
 
-1. Validate the DAB and inspect the exact deployed workspace files.
-2. Run the Databricks-side connectivity probe.
-3. Run the one-table smoke pipeline.
-4. Inspect the pipeline update state and error events with the CLI.
-5. Check `start_offset is None` handling, metadata ingestion type, resource
-   path, query parameter names, schema types, and generated-source freshness.
-6. Run the full pipeline only after smoke succeeds.
-7. Query Unity Catalog tables and counts, for example with the Databricks SQL
-   CLI tooling, and inspect table schemas with `databricks tables get`.
+1. `databricks bundle validate` from the directory containing `databricks.yml`.
+2. Databricks-side connectivity probe.
+3. One-table smoke pipeline.
+4. Pipeline update/error inspection with the Databricks CLI.
+5. Check generated-source freshness, `start_offset=None`, metadata ingestion
+   type, resource paths, filters, schemas, retries, and cursor advancement.
+6. Full pipeline.
+7. `databricks tables get` and SQL row-count checks for representative outputs.
 
-Do not mistake a browser's 404, a local-only success, an expired Databricks
-OAuth token, or a pending classic cluster for the same class of bug. Record the
-observed error, the smallest reproduction, the fix, and the verification.
+If the CLI says the OAuth refresh token is invalid, reauthenticate with
+`databricks auth login --profile DEFAULT`. If a classic cluster remains pending
+on cloud capacity, retry serverless before changing connector code.
 
-## Phase 8: self-review, documentation, and handoff
+### 9. Review, clean up, and hand off
 
-Before committing, review:
+Run `/self-review-connector <source>` after tests, docs, and spec generation.
+Resolve blockers or report them with file/line evidence. Check that the fake
+API, API document, connector, generated source, DAB, and docs agree. Remove
+unrelated POCs only when explicitly requested. Use `git diff --check`, keep
+secrets and dev configs out of commits, commit focused files, and push the
+requested branch or `main`.
 
-- API behavior is represented in simulator, connector, and docs consistently;
-- no secrets, tokens, private URLs, or accidental generated artifacts are
-  committed;
-- the fake API persists data and Faker generation is bounded;
-- generated connector source matches the handwritten source;
-- tests, `git diff --check`, bundle validation, smoke run, probe, and full run
-  have been attempted or their blocker is documented;
-- only files belonging to this connector are changed. Remove unrelated POCs
-  only when the user explicitly requests it, as in a connector-specific branch
-  cleanup.
-
-Commit focused changes, push the requested branch, and report the branch,
-commit, commands, endpoints, credentials placeholders, test results, deployed
-pipeline/job names, and any intentionally uncommitted local data state.
+Report the resulting paths, credentials placeholders, simulator commands,
+public URL requirements, probe/pipeline/job names, tests, row-count evidence,
+commit/branch, and any intentionally uncommitted persistent data file.

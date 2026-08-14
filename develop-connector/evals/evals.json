@@ -4,19 +4,19 @@
     {
       "id": 1,
       "prompt": "Research the Acme Events API and create a local FastAPI simulator, a Lakeflow community connector, and a Databricks Asset Bundle that can ingest its events into Delta tables.",
-      "expected_output": "A researched API contract, persistent authenticated FastAPI simulator with bounded Faker data, Lakeflow connector source and tests, generated source, DAB pipeline/smoke/probe resources, and verification instructions.",
+      "expected_output": "A researched API contract, persistent authenticated FastAPI simulator with bounded Faker data, delegation to the nested repository's research/implementation/spec/docs/test/deploy skills, DAB pipeline/smoke/probe resources, and verification instructions.",
       "files": []
     },
     {
       "id": 2,
       "prompt": "My Databricks serverless pipeline cannot reach my FastAPI app on localhost. Make this connector setup work through Cloudflare without buying a domain, then prove the API is reachable from Databricks before debugging the connector.",
-      "expected_output": "The workflow explains that localhost is unreachable from Databricks, uses a temporary Cloudflare Quick Tunnel, runs a Databricks-side DNS/HTTPS/health/auth probe, and separates network failures from Lakeflow connector failures.",
+      "expected_output": "The workflow explains that localhost is unreachable from Databricks, uses a temporary Cloudflare Quick Tunnel, delegates connector work to the nested repository skills, runs a Databricks-side DNS/HTTPS/health/auth probe, and separates network failures from Lakeflow connector failures.",
       "files": []
     },
     {
       "id": 3,
       "prompt": "The first Lakeflow read fails even though curl works. Review the connector and deploy a small smoke pipeline. Pay attention to what Databricks passes on the initial read and verify the resulting Unity Catalog table.",
-      "expected_output": "The workflow checks for start_offset=None, validates ingestion metadata, regenerates the merged source, runs a smoke pipeline, inspects the table, and reports the root cause with evidence.",
+      "expected_output": "The workflow delegates implementation/test/self-review to the nested connector skills, checks for start_offset=None and valid ingestion metadata, regenerates the merged source, runs a smoke pipeline, inspects the table, and reports the root cause with evidence.",
       "files": []
     }
   ]

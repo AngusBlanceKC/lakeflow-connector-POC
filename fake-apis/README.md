@@ -3,6 +3,12 @@
 This directory contains small FastAPI services that simulate real-world APIs
 for local connector development and end-to-end Lakeflow testing.
 
+The reusable simulator checklist is in
+[`develop-connector/references/fake-api-contract.md`](../develop-connector/references/fake-api-contract.md).
+It covers persistence, deterministic seed data, bounded Faker generation,
+authentication, permissions, pagination/cursors, deletes, webhooks, rate
+limits, resilience, and test/documentation expectations.
+
 ## Available APIs
 
 - [`visit-create-v2`](visit-create-v2/README.md) — a Visit Create v2 simulator
