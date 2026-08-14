@@ -13,6 +13,8 @@ limits, resilience, and test/documentation expectations.
 
 - [`visit-create-v2`](visit-create-v2/README.md) — a Visit Create v2 simulator
   with authentication, request limits, pagination, and resource endpoints.
+- [`fusion-circdata`](fusion-circdata/README.md) — a Fusion/Circdata simulator
+  for the private People and EventTicket integration streams.
 - [`cloudflare`](cloudflare/README.md) — notes and configuration examples for
   exposing a local fake API through a Cloudflare Quick Tunnel.
 

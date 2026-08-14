@@ -13,6 +13,10 @@ event scoping, and configurable request limits. See its [README](./fake-apis/vis
 
 ## POC connector
 
-The current proof of concept is the Visit Create v2 connector. Its source,
-schemas, generated Lakeflow source, and API documentation are under
+The current proof-of-concept connectors include Visit Create v2 and Fusion
+(Circdata). Their source, schemas, generated Lakeflow sources, and API
+documentation are under
 [`lakeflow-community-connectors/src/databricks/labs/community_connector/sources/visit_create_v2/`](./lakeflow-community-connectors/src/databricks/labs/community_connector/sources/visit_create_v2/).
+
+The Fusion/Circdata source is under
+[`lakeflow-community-connectors/src/databricks/labs/community_connector/sources/fusion/`](./lakeflow-community-connectors/src/databricks/labs/community_connector/sources/fusion/).
