@@ -1,0 +1,64 @@
+{
+  "event_id": "demo-event-001",
+  "revision": 2,
+  "events": [
+    {
+      "event_id": "demo-event-001",
+      "name": "FairVerify Demo Expo",
+      "status": "published",
+      "currency": "EUR"
+    }
+  ],
+  "tickets": [
+    {
+      "ticket_id": "fv-ticket-00001",
+      "event_id": "demo-event-001",
+      "barcode": "FVDEMO00000001",
+      "ticket_type": "visitor",
+      "status": "valid",
+      "first_name": "Ada",
+      "last_name": "Lovelace",
+      "email": "ada.lovelace@example.test",
+      "company": "Analytical Engines Ltd",
+      "price": 0.0,
+      "currency": "EUR",
+      "checked_in": true,
+      "issued_at": "2026-08-14T12:00:55.355189Z",
+      "updated_at": "2026-08-14T12:01:12.515804Z",
+      "custom_fields": {
+        "source": "seed"
+      },
+      "generated": false
+    },
+    {
+      "ticket_id": "fv-ticket-00002",
+      "event_id": "demo-event-001",
+      "barcode": "FVDEMO00000002",
+      "ticket_type": "visitor",
+      "status": "valid",
+      "first_name": "Grace",
+      "last_name": "Hopper",
+      "email": "grace.hopper@example.test",
+      "company": "Compiler Works",
+      "price": 0.0,
+      "currency": "EUR",
+      "checked_in": true,
+      "issued_at": "2026-08-14T12:00:55.355808Z",
+      "updated_at": "2026-08-14T12:00:55.355811Z",
+      "custom_fields": {
+        "source": "seed"
+      },
+      "generated": false
+    }
+  ],
+  "scans": [
+    {
+      "scan_id": "scan-00002",
+      "ticket_id": "fv-ticket-00001",
+      "event_id": "demo-event-001",
+      "valid": true,
+      "scanned_at": "2026-08-14T12:01:12.515804Z"
+    }
+  ],
+  "tombstones": []
+}

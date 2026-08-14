@@ -1,0 +1,20 @@
+[
+  {
+    "ticket_id": "fv-ticket-00001",
+    "event_id": "demo-event-001",
+    "barcode": "FVDEMO00000001",
+    "ticket_type": "visitor",
+    "status": "valid",
+    "first_name": "Ada",
+    "last_name": "Lovelace",
+    "email": "ada.lovelace@example.test",
+    "company": "Analytical Engines Ltd",
+    "price": 0.0,
+    "currency": "EUR",
+    "checked_in": false,
+    "issued_at": "2026-01-01T09:00:00Z",
+    "updated_at": "2026-01-01T09:00:00Z",
+    "custom_fields": {"source": "seed"},
+    "generated": false
+  }
+]

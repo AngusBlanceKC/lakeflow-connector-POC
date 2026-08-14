@@ -1,0 +1,22 @@
+display_name: FairVerify Ticketdata v2
+connection:
+  parameters:
+    - name: base_url
+      type: string
+      required: false
+      description: FairVerify Ticketdata API host or local simulator URL.
+    - name: event_id
+      type: string
+      required: true
+      description: FairVerify event identifier.
+    - name: api_key
+      type: string
+      required: false
+      secret: true
+      description: FairVerify API key, pending production confirmation.
+    - name: access_token
+      type: string
+      required: false
+      secret: true
+      description: Bearer token, pending production confirmation.
+external_options_allowlist: "page_size,page_offset,status,email"

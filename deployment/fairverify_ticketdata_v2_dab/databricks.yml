@@ -1,0 +1,23 @@
+bundle:
+  name: fairverify-ticketdata-v2-connector
+include:
+  - resources/*.yml
+variables:
+  catalog:
+    default: raw_angus
+  schema:
+    default: default
+  base_url:
+    default: http://127.0.0.1:8030
+  event_id:
+    default: demo-event-001
+  api_key:
+    default: demo-fairverify-api-key
+  access_token:
+    default: demo-fairverify-access-token
+targets:
+  dev:
+    mode: development
+    default: true
+    workspace:
+      host: https://adb-3990188733873176.16.azuredatabricks.net
