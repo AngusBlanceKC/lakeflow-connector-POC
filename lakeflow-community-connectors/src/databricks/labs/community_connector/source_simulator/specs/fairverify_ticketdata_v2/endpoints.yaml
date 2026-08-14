@@ -1,0 +1,24 @@
+# Local inferred contract; replace with FairVerify's private Ticketdata v2 spec.
+endpoints:
+  - path: /api/v2/events/{event_id}/tickets
+    method: GET
+    corpus: tickets
+    response:
+      pagination_style: offset
+      wrapper:
+        records_key: items
+    params:
+      limit: {role: limit, default: 100, max: 1000}
+      offset: {role: offset}
+      status: {role: ignore}
+      email: {role: ignore}
+  - path: /api/v2/events
+    method: GET
+    corpus: events
+    response:
+      pagination_style: offset
+      wrapper:
+        records_key: items
+    params:
+      limit: {role: limit, default: 100, max: 1000}
+      offset: {role: offset}

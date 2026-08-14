@@ -1,0 +1,19 @@
+resources:
+  pipelines:
+    fairverify_pipeline:
+      name: "[dev ${var.catalog}] fairverify-ticketdata-v2"
+      catalog: ${var.catalog}
+      schema: ${var.schema}
+      serverless: true
+      development: true
+      channel: PREVIEW
+      libraries:
+        - file:
+            path: ../fairverify_ticketdata_v2_pipeline.py
+        - file:
+            path: ../_generated_fairverify_ticketdata_v2_python_source.py
+      configuration:
+        fairverify.base_url: ${var.base_url}
+        fairverify.event_id: ${var.event_id}
+        fairverify.api_key: ${var.api_key}
+        fairverify.access_token: ${var.access_token}
