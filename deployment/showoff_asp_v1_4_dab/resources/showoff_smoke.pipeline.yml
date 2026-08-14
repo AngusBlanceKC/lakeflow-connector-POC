@@ -1,7 +1,7 @@
 resources:
   pipelines:
     showoff_smoke_pipeline:
-      name: "[dev ${var.catalog}] showoff-asp-v1-4-smoke"
+      name: "LC-POC | ShowOff ASP v1.4 | smoke"
       catalog: ${var.catalog}
       schema: ${var.schema}
       serverless: true

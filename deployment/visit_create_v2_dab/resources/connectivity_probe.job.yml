@@ -1,7 +1,7 @@
 resources:
   jobs:
     visit_create_v2_connectivity_probe:
-      name: visit-create-v2-connectivity-probe-${workspace.current_user.short_name}
+      name: "LC-POC | Visit Create v2 | probe-${workspace.current_user.short_name}"
       tasks:
         - task_key: probe
           spark_python_task:

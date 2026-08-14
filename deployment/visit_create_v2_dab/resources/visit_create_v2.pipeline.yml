@@ -1,7 +1,7 @@
 resources:
   pipelines:
     visit_create_v2_pipeline:
-      name: visit-create-v2-${workspace.current_user.short_name}
+      name: "LC-POC | Visit Create v2 | main-${workspace.current_user.short_name}"
       catalog: ${var.catalog}
       schema: ${var.schema}
       serverless: true

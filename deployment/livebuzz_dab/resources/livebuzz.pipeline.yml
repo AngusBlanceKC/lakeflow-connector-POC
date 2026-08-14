@@ -1,7 +1,7 @@
 resources:
   pipelines:
     livebuzz_pipeline:
-      name: "[dev ${var.catalog}] livebuzz"
+      name: "LC-POC | LiveBuzz | main"
       catalog: ${var.catalog}
       schema: ${var.schema}
       serverless: true

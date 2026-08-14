@@ -1,7 +1,7 @@
 resources:
   jobs:
     showoff_connectivity_probe:
-      name: showoff_asp_v1_4_connectivity_probe
+      name: "LC-POC | ShowOff ASP v1.4 | probe"
       tasks:
         - task_key: probe
           spark_python_task:

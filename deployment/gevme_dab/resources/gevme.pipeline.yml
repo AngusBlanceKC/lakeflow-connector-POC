@@ -1,7 +1,7 @@
 resources:
   pipelines:
     gevme_pipeline:
-      name: "[dev ${var.catalog}] gevme"
+      name: "LC-POC | GEVME | main"
       catalog: ${var.catalog}
       schema: ${var.schema}
       serverless: true

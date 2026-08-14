@@ -1,7 +1,7 @@
 resources:
   pipelines:
     fusion_pipeline:
-      name: "[dev ${var.catalog}] fusion-circdata"
+      name: "LC-POC | Fusion Circdata | main"
       catalog: ${var.catalog}
       schema: ${var.schema}
       serverless: true

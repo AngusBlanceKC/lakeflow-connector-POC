@@ -1,7 +1,7 @@
 resources:
   pipelines:
     gevme_smoke_pipeline:
-      name: "[dev ${var.catalog}] gevme-smoke"
+      name: "LC-POC | GEVME | smoke"
       catalog: ${var.catalog}
       schema: ${var.schema}
       serverless: true

@@ -1,7 +1,7 @@
 resources:
   jobs:
     fairverify_connectivity_probe:
-      name: fairverify_ticketdata_v2_connectivity_probe
+      name: "LC-POC | FairVerify Ticketdata v2 | probe"
       tasks:
         - task_key: probe
           spark_python_task:

@@ -1,7 +1,7 @@
 resources:
   jobs:
     fusion_connectivity_probe:
-      name: fusion_circdata_connectivity_probe
+      name: "LC-POC | Fusion Circdata | probe"
       tasks:
         - task_key: probe
           spark_python_task:

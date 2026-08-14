@@ -1,7 +1,7 @@
 resources:
   pipelines:
     fairverify_smoke_pipeline:
-      name: "[dev ${var.catalog}] fairverify-ticketdata-v2-smoke"
+      name: "LC-POC | FairVerify Ticketdata v2 | smoke"
       catalog: ${var.catalog}
       schema: ${var.schema}
       serverless: true

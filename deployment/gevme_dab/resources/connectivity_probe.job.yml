@@ -1,7 +1,7 @@
 resources:
   jobs:
     gevme_connectivity_probe:
-      name: gevme_connectivity_probe
+      name: "LC-POC | GEVME | probe"
       tasks:
         - task_key: probe
           spark_python_task:

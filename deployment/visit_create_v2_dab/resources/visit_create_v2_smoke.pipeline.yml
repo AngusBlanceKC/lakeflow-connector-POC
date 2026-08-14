@@ -1,7 +1,7 @@
 resources:
   pipelines:
     visit_create_v2_smoke_pipeline:
-      name: visit-create-v2-smoke-${workspace.current_user.short_name}
+      name: "LC-POC | Visit Create v2 | smoke-${workspace.current_user.short_name}"
       catalog: ${var.catalog}
       schema: ${var.schema}
       serverless: true

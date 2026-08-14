@@ -36,3 +36,9 @@ and [`fake-apis/showoff-asp-v1-4/`](./fake-apis/showoff-asp-v1-4/).
 The LiveBuzz source and simulator are under
 [`lakeflow-community-connectors/src/databricks/labs/community_connector/sources/livebuzz/`](./lakeflow-community-connectors/src/databricks/labs/community_connector/sources/livebuzz/)
 and [`fake-apis/livebuzz/`](./fake-apis/livebuzz/).
+
+## Databricks resource naming
+
+All DAB-created pipelines and connectivity jobs use the `LC-POC |` prefix so
+they can be filtered together in Databricks. Each connector has `main`,
+`smoke`, and `probe` resources, for example `LC-POC | LiveBuzz | main`.

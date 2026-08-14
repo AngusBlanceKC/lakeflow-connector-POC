@@ -1,7 +1,7 @@
 resources:
   pipelines:
     fusion_smoke_pipeline:
-      name: "[dev ${var.catalog}] fusion-circdata-smoke"
+      name: "LC-POC | Fusion Circdata | smoke"
       catalog: ${var.catalog}
       schema: ${var.schema}
       serverless: true
