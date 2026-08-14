@@ -1,0 +1,23 @@
+resources:
+  pipelines:
+    visit_create_v2_pipeline:
+      name: visit-create-v2-${workspace.current_user.short_name}
+      catalog: ${var.catalog}
+      schema: ${var.schema}
+      channel: PREVIEW
+      edition: ADVANCED
+      development: true
+      continuous: false
+      clusters:
+        - label: default
+          node_type_id: Standard_DS3_v2
+          num_workers: 1
+      configuration:
+        visit_create_v2.base_url: ${var.base_url}
+        visit_create_v2.api_key: ${var.api_key}
+        visit_create_v2.expo_id: ${var.expo_id}
+      libraries:
+        - file:
+            path: ../_generated_visit_create_v2_python_source.py
+        - file:
+            path: ../visit_create_v2_pipeline.py
