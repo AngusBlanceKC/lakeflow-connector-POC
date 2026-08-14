@@ -152,29 +152,69 @@ ordinary local Python process. Prefer serverless for the first run.
 ### 7. Make local APIs reachable from Databricks
 
 Databricks cannot call the developer machine's `127.0.0.1`. For short-lived
-testing, use a Cloudflare Quick Tunnel without buying a domain:
+testing, use a Cloudflare Quick Tunnel without buying a domain. The complete
+repository-specific guide is
+[`fake-apis/cloudflare/README.md`](../fake-apis/cloudflare/README.md).
+
+Install and verify the CLI:
 
 ```bash
+# macOS
+brew install cloudflared
+
+# verify on any platform after installing by the platform's package method
+cloudflared --version
+```
+
+Start the FastAPI service first, then create the temporary public HTTPS URL:
+
+```bash
+# in the fake API directory
+<your-venv>/bin/uvicorn app:app --host 127.0.0.1 --port 8000
+
+# in a second terminal
 cloudflared tunnel --url http://127.0.0.1:8000
 ```
 
-Document the generated URL procedure under `fake-apis/cloudflare/`. Keep the
-tunnel process running; its `trycloudflare.com` URL is temporary and not a
-production endpoint.
+Copy the generated `https://<random>.trycloudflare.com` URL into the DAB/API
+configuration. Quick Tunnels do not require `cloudflared tunnel login`, an
+account, or a purchased domain. Keep the tunnel terminal running; the URL
+changes when the process stops. A message about no default config file is
+normal for a Quick Tunnel because it is not using a named-tunnel config.
+
+For a stable hostname, a Cloudflare account and a domain managed in that
+account are required. The CLI setup is:
+
+```bash
+cloudflared tunnel login
+cloudflared tunnel create <tunnel-name>
+cloudflared tunnel list
+# copy fake-apis/cloudflare/config.example.yml to ~/.cloudflared/config.yml
+# replace the tunnel UUID and hostname in that config
+cloudflared tunnel route dns <tunnel-name> api.example.com
+cloudflared tunnel --config ~/.cloudflared/config.yml run <tunnel-name>
+```
+
+Keep `~/.cloudflared/` and tunnel credentials out of git. Use the generated
+hostname as `https://api.example.com/<api-base-path>` for the connector.
 
 Always separate network debugging from connector debugging:
 
-1. `curl` the public tunnel locally.
-2. Run the pure-Python probe from Databricks to verify DNS, TLS, `/health`, and
+1. Confirm the local API: `curl http://127.0.0.1:8000/health`.
+2. Confirm the public tunnel: `curl https://<tunnel-host>/health`.
+3. Confirm auth and the exact resource path with `curl -u <api-key>:` or the
+   source's documented auth headers.
+4. Run the pure-Python probe from Databricks to verify DNS, TLS, `/health`, and
    one authenticated resource request.
-3. If the API base is `/create/v2`, test `/health` at the root unless the
+5. If the API base is `/create/v2`, test `/health` at the root unless the
    simulator explicitly exposes `/create/v2/health`; do not infer the health
    path from the resource base path.
-4. Only after the Databricks-side probe passes, run the smoke pipeline.
+6. Only after the Databricks-side probe passes, run the smoke pipeline.
 
-This catches the key failure mode where local curl works but Databricks cannot
-reach localhost, and the reverse failure mode where the API is reachable but
-the Lakeflow first-read contract is wrong.
+If public curl works but the Databricks probe fails, inspect the tunnel process,
+hostname, HTTPS certificate, workspace egress policy, and API path before
+changing connector code. If the probe passes but Lakeflow fails, debug the
+connector contract and generated source instead.
 
 ### 8. Debug and verify in order
 
