@@ -1,0 +1,31 @@
+display_name: Fusion (Circdata)
+connection:
+  parameters:
+    - name: base_url
+      type: string
+      required: false
+      description: Private Fusion API base URL, supplied by Fusion.
+    - name: event_id
+      type: string
+      required: true
+      description: Fusion event identifier.
+    - name: username
+      type: string
+      required: true
+      secret: true
+      description: Fusion integration username.
+    - name: password
+      type: string
+      required: true
+      secret: true
+      description: Fusion integration password.
+    - name: install_name
+      type: string
+      required: true
+      description: Fusion installation name.
+    - name: api_key
+      type: string
+      required: true
+      secret: true
+      description: API key supplied by Fusion.
+external_options_allowlist: "page_size,page_offset"

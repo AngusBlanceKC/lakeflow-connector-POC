@@ -1,0 +1,21 @@
+resources:
+  pipelines:
+    fusion_pipeline:
+      name: "[dev ${var.catalog}] fusion-circdata"
+      catalog: ${var.catalog}
+      schema: ${var.schema}
+      serverless: true
+      development: true
+      channel: PREVIEW
+      libraries:
+        - file:
+            path: ../fusion_pipeline.py
+        - file:
+            path: ../_generated_fusion_python_source.py
+      configuration:
+        fusion.base_url: ${var.base_url}
+        fusion.event_id: ${var.event_id}
+        fusion.username: ${var.username}
+        fusion.password: ${var.password}
+        fusion.install_name: ${var.install_name}
+        fusion.api_key: ${var.api_key}
