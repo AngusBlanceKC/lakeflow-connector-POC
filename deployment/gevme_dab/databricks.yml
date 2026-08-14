@@ -1,0 +1,28 @@
+bundle:
+  name: gevme-connector
+
+include:
+  - resources/*.yml
+
+variables:
+  catalog:
+    default: raw_angus
+  schema:
+    default: default
+  base_url:
+    default: http://127.0.0.1:8020
+  event_id:
+    default: demo-event-001
+  access_token:
+    default: demo-access-token
+  client_id:
+    default: demo-client-id
+  client_secret:
+    default: demo-client-secret
+
+targets:
+  dev:
+    mode: development
+    default: true
+    workspace:
+      host: https://adb-3990188733873176.16.azuredatabricks.net

@@ -1,0 +1,27 @@
+display_name: GEVME Registration
+connection:
+  parameters:
+    - name: base_url
+      type: string
+      required: false
+      description: GEVME host or simulator URL; /apiv2/api is appended automatically.
+    - name: event_id
+      type: string
+      required: true
+      description: GEVME event identifier.
+    - name: access_token
+      type: string
+      required: false
+      secret: true
+      description: OAuth 2.0 bearer access token.
+    - name: client_id
+      type: string
+      required: false
+      secret: true
+      description: OAuth client ID, used only when access_token is not supplied.
+    - name: client_secret
+      type: string
+      required: false
+      secret: true
+      description: OAuth client secret, used only when access_token is not supplied.
+external_options_allowlist: "page_size,page_offset,modified_from,where_email"

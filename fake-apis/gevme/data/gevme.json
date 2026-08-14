@@ -1,0 +1,71 @@
+{
+  "event_id": "demo-event-001",
+  "revision": 3,
+  "attendees": [
+    {
+      "id": "attendee-0001",
+      "event_id": "demo-event-001",
+      "email": "ada.lovelace@example.test",
+      "first_name": "Ada",
+      "last_name": "Lovelace",
+      "full_name": "Ada Lovelace",
+      "company": "Analytical Engines Ltd",
+      "job_title": "Mathematician",
+      "country": "GB",
+      "status": "registered",
+      "checked_in": false,
+      "created_at": "2026-01-01T09:00:00Z",
+      "updated_at": "2026-01-01T09:00:00Z",
+      "generated": false
+    },
+    {
+      "id": "attendee-0002",
+      "event_id": "demo-event-001",
+      "email": "grace.hopper@example.test",
+      "first_name": "Grace",
+      "last_name": "Hopper",
+      "full_name": "Grace Hopper",
+      "company": "Compiler Works",
+      "job_title": "Computer Scientist",
+      "country": "US",
+      "status": "registered",
+      "checked_in": true,
+      "created_at": "2026-01-02T09:00:00Z",
+      "updated_at": "2026-01-02T09:00:00Z",
+      "generated": false
+    },
+    {
+      "id": "attendee-0003",
+      "event_id": "demo-event-001",
+      "email": "deborah.charlton.3@example.test",
+      "first_name": "Deborah",
+      "last_name": "Charlton",
+      "full_name": "Deborah Charlton",
+      "company": "Thomas Ltd",
+      "job_title": "Secondary school teacher",
+      "country": "GB",
+      "status": "registered",
+      "checked_in": false,
+      "created_at": "2026-08-14T11:49:21.890073Z",
+      "updated_at": "2026-08-14T11:49:21.890100Z",
+      "generated": true
+    },
+    {
+      "id": "attendee-0004",
+      "event_id": "demo-event-001",
+      "email": "georgina.evans.4@example.test",
+      "first_name": "Georgina",
+      "last_name": "Evans",
+      "full_name": "Georgina Evans",
+      "company": "Cunningham Ltd",
+      "job_title": "Engineer, structural",
+      "country": "GB",
+      "status": "registered",
+      "checked_in": false,
+      "created_at": "2026-08-14T11:50:21.894962Z",
+      "updated_at": "2026-08-14T11:50:21.894990Z",
+      "generated": true
+    }
+  ],
+  "tombstones": []
+}
