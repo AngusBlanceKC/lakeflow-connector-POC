@@ -1,9 +1,22 @@
 # Cloudflare Tunnel for the local fake APIs
 
-This directory documents how to expose the local Visit Create v2 simulator to
-Databricks through Cloudflare Tunnel. The tunnel process runs on the same
-machine as the FastAPI service and forwards a public HTTPS hostname to
-`http://127.0.0.1:8000`.
+This directory documents how to expose all six local FastAPI simulators to
+Databricks through one Cloudflare Tunnel. The tunnel process runs on the same
+machine as the services and forwards one public HTTPS hostname to the local
+path gateway:
+
+| API | Local service | Public path |
+| --- | --- | --- |
+| Visit Create v2 | `127.0.0.1:8100` | `/visit-create` |
+| Fusion/Circdata | `127.0.0.1:8010` | `/fusion` |
+| GEVME | `127.0.0.1:8020` | `/gevme` |
+| FairVerify Ticketdata v2 | `127.0.0.1:8030` | `/fairverify` |
+| ShowOff ASP v1.4 | `127.0.0.1:8040` | `/showoff` |
+| LiveBuzz | `127.0.0.1:8050` | `/livebuzz` |
+
+Run [`run_all.sh`](run_all.sh) to start all six services. Fusion uses port
+`8010` in this combined setup so it does not conflict with Visit Create on
+port `8000`.
 
 Use a Quick Tunnel for a short-lived test, or a named tunnel for a stable
 hostname. Quick Tunnels do not require a Cloudflare account; named tunnels use
@@ -18,11 +31,10 @@ brew install cloudflared
 cloudflared --version
 ```
 
-Start the simulator first:
+Start all simulators first:
 
 ```bash
-cd fake-apis/visit-create-v2
-VISIT_API_KEY='use-a-strong-test-key' .venv/bin/uvicorn app:app --host 127.0.0.1 --port 8000
+./fake-apis/cloudflare/run_all.sh
 ```
 
 ## Fast temporary tunnel
@@ -34,11 +46,22 @@ cloudflared tunnel --url http://127.0.0.1:8000
 ```
 
 Copy the generated `https://*.trycloudflare.com` URL and append
-`/create/v2` for the connector `base_url`. Keep this terminal running. The
-URL changes when the process stops and Quick Tunnels are intended for testing,
-not production.
+`/visit-create/create/v2` for the Visit Create connector `base_url`. Keep this
+terminal running. The URL changes when the process stops and Quick Tunnels are
+intended for testing, not production.
 
-## Stable named tunnel
+To expose every API without buying a domain, use one Quick Tunnel for the
+gateway:
+
+```bash
+./fake-apis/cloudflare/run_quick_tunnels.sh
+```
+
+The script starts all six APIs, the gateway, and one temporary tunnel. Use the
+single generated URL with the path shown in the table above. Keep the script
+running while Databricks jobs execute.
+
+## Stable named tunnel for all APIs
 
 1. Log in through the browser:
 
@@ -49,7 +72,7 @@ not production.
 2. Create a tunnel:
 
    ```bash
-   cloudflared tunnel create visit-create-v2
+   cloudflared tunnel create fake-apis
    cloudflared tunnel list
    ```
 
@@ -60,27 +83,39 @@ not production.
    `~/.cloudflared/config.yml`, replacing `<TUNNEL_UUID>` and
    `<api.example.com>` with your values.
 
-4. Create the DNS route:
+4. Create the single DNS route:
 
    ```bash
-   cloudflared tunnel route dns visit-create-v2 api.example.com
+   cloudflared tunnel route dns fake-apis api.example.com
    ```
 
 5. Run it:
 
    ```bash
-   cloudflared tunnel --config ~/.cloudflared/config.yml run visit-create-v2
+   cloudflared tunnel --config ~/.cloudflared/config.yml run fake-apis
    ```
 
-The connector URL will be:
-`https://api.example.com/create/v2`.
+The connector base URLs will share one hostname and use different paths:
+
+```text
+Visit Create: https://api.example.com/visit-create/create/v2
+Fusion:       https://api.example.com/fusion
+GEVME:        https://api.example.com/gevme
+FairVerify:   https://api.example.com/fairverify
+ShowOff:      https://api.example.com/showoff
+LiveBuzz:     https://api.example.com/livebuzz
+```
+
+Replace `example.com` with a domain managed in your Cloudflare account. A
+named tunnel cannot provide permanent custom hostnames without a domain.
 
 ## Databricks connector settings
 
-Use these values in the Visit Create v2 Unity Catalog connection:
+Use the matching public hostname in each Unity Catalog connection or DAB
+`base_url` variable. For example, Visit Create uses:
 
 ```text
-base_url = https://api.example.com/create/v2
+base_url = https://api.example.com/visit-create/create/v2
 api_key = <the value used for VISIT_API_KEY>
 expo_id = 0rwwipz7fufs1
 ```
@@ -91,8 +126,7 @@ in the workspace network policy. Never expose the simulator with the default
 
 ## Reset and security notes
 
-- The FastAPI service persists data in
-  `fake-apis/visit-create-v2/data/visit-create-v2.json`.
+- The FastAPI services persist data in their individual `data/*.json` files.
 - A tunnel exposes the API to the internet; use a strong key and rotate it
   after testing.
 - Tunnel credentials live outside this repository in `~/.cloudflared/`.

@@ -12,7 +12,7 @@ cd fake-apis/fusion-circdata
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -e .
-uvicorn app:app --host 127.0.0.1 --port 8000
+uvicorn app:app --host 127.0.0.1 --port 8010
 ```
 
 Default test credentials:
@@ -28,11 +28,11 @@ api_key=demo-api-key
 Test it locally:
 
 ```bash
-curl http://127.0.0.1:8000/health
+curl http://127.0.0.1:8010/health
 curl -u demo-user:demo-password \
   -H 'X-Fusion-Install-Name: demo-install' \
   -H 'X-Fusion-API-Key: demo-api-key' \
-  'http://127.0.0.1:8000/People?eventId=demo-event-001&limit=2'
+  'http://127.0.0.1:8010/People?eventId=demo-event-001&limit=2'
 ```
 
 ## Behavior

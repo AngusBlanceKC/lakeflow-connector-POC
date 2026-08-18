@@ -39,7 +39,6 @@ seconds, capped at 250 generated attendees. Set
 - Local API: `http://127.0.0.1:8050`
 - Health check: [http://127.0.0.1:8050/health](http://127.0.0.1:8050/health)
 - Databricks main pipeline: `<deploy-livebuzz-dab-and-add-link>`
-- Databricks smoke pipeline: `<deploy-livebuzz-dab-and-add-link>`
 - Demo API key: `demo-livebuzz-api-key`
 - Demo bearer: `demo-livebuzz-bearer`
 - Campaign: `demo-event-2026`

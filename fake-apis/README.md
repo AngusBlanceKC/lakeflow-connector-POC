@@ -31,8 +31,10 @@ limits, resilience, and test/documentation expectations.
 1. Start the fake API locally with its project README.
 2. Check `/health` before testing authenticated endpoints.
 3. Use the documented API key or credentials for connector requests.
-4. If Databricks needs to reach the API, expose the local port through a
-   Cloudflare Tunnel and use the generated HTTPS URL as the connector base URL.
+4. If Databricks needs to reach the APIs, start all six services with
+   [`cloudflare/run_all.sh`](cloudflare/run_all.sh), run the named Cloudflare
+   Tunnel described in [`cloudflare/README.md`](cloudflare/README.md), and use
+   the matching public hostname as each connector base URL.
 
 ## Persistent generated data
 

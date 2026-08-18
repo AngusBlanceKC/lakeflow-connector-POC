@@ -1,9 +1,10 @@
 # Copy this file to ~/.cloudflared/config.yml.
-# Replace both placeholders before running the named tunnel.
+# Replace the placeholders before running the named tunnel.
 tunnel: <TUNNEL_UUID>
 credentials-file: ~/.cloudflared/<TUNNEL_UUID>.json
 
 ingress:
+  # The local gateway routes each API path to its simulator port.
   - hostname: <api.example.com>
     service: http://127.0.0.1:8000
   - service: http_status:404

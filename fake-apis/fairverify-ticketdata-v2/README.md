@@ -10,7 +10,6 @@ wire contract.
 - API base URL: `<start-cloudflare-quick-tunnel>`
 - Health check: [`<quick-tunnel>/health`](<quick-tunnel>/health)
 - Databricks pipeline: `<deploy-the-fairverify-dab-to-get-link>`
-- Smoke pipeline: `<deploy-the-fairverify-dab-to-get-link>`
 - Event ID: `demo-event-001`
 - API key: `demo-fairverify-api-key`
 - Bearer token: `demo-fairverify-access-token`

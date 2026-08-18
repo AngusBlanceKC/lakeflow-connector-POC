@@ -10,7 +10,6 @@ generation.
 - API base URL: `<start-cloudflare-quick-tunnel>`
 - Health check: [`<start-cloudflare-quick-tunnel>/health`](<start-cloudflare-quick-tunnel>/health)
 - Databricks pipeline: `<deploy-the-gevme-dab-to-get-link>`
-- Smoke pipeline: `<deploy-the-gevme-dab-to-get-link>`
 - Event ID: `demo-event-001`
 - OAuth client ID: `demo-client-id`
 - OAuth client secret: `demo-client-secret`

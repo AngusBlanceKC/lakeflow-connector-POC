@@ -7,7 +7,6 @@ Persistent FastAPI simulator for the official ShowOff API v1.4 contract.
 - API base URL: `<start-cloudflare-quick-tunnel>`
 - Health check: [`<quick-tunnel>/health`](<quick-tunnel>/health)
 - Databricks pipeline: `<deploy-the-showoff-dab-to-get-link>`
-- Smoke pipeline: `<deploy-the-showoff-dab-to-get-link>`
 - API key: `demo-showoff-api-key`
 - API secret: `demo-showoff-api-secret`
 - Bearer token: `demo-showoff-access-token`
