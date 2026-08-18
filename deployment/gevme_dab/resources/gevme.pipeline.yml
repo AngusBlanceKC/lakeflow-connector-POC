@@ -13,7 +13,7 @@ resources:
         - file:
             path: ../_generated_gevme_python_source.py
       configuration:
-        gevme.base_url: ${var.base_url}
+        gevme.base_url: ${var.cloudflare_url}/gevme
         gevme.event_id: ${var.event_id}
         gevme.access_token: ${var.access_token}
         gevme.client_id: ${var.client_id}

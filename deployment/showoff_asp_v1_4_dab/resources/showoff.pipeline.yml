@@ -13,7 +13,7 @@ resources:
         - file:
             path: ../_generated_showoff_asp_v1_4_python_source.py
       configuration:
-        showoff.base_url: ${var.base_url}
+        showoff.base_url: ${var.cloudflare_url}/showoff
         showoff.api_key: ${var.api_key}
         showoff.api_secret: ${var.api_secret}
         showoff.site_uuid: ${var.site_uuid}

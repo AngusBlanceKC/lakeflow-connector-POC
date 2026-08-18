@@ -7,8 +7,9 @@ variables:
     default: raw_angus
   schema:
     default: default
-  base_url:
-    default: http://127.0.0.1:8030
+  cloudflare_url:
+    description: Shared Cloudflare URL for the local API gateway.
+    default: https://faced-switches-exclusive-suggested.trycloudflare.com
   event_id:
     default: demo-event-001
   api_key:

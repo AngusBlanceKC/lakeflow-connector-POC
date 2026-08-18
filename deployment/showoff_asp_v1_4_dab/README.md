@@ -2,7 +2,7 @@
 
 ```bash
 databricks bundle validate -t dev --profile DEFAULT
-databricks bundle deploy -t dev --var='base_url=https://<quick-tunnel>.trycloudflare.com' --profile DEFAULT
+databricks bundle deploy -t dev --var='cloudflare_url=https://<quick-tunnel>.trycloudflare.com' --profile DEFAULT
 ```
 
 The paired simulator README is [here](../../fake-apis/showoff-asp-v1-4/README.md)

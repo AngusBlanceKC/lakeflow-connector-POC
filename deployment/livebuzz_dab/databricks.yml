@@ -5,7 +5,9 @@ include:
 variables:
   catalog: {default: raw_angus}
   schema: {default: default}
-  base_url: {default: http://127.0.0.1:8050}
+  cloudflare_url:
+    description: Shared Cloudflare URL for the local API gateway.
+    default: https://faced-switches-exclusive-suggested.trycloudflare.com
   campaign: {default: demo-event-2026}
   api_key: {default: demo-livebuzz-api-key}
 targets:

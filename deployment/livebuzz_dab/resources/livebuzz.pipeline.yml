@@ -11,6 +11,6 @@ resources:
         - file: {path: ../livebuzz_pipeline.py}
         - file: {path: ../_generated_livebuzz_python_source.py}
       configuration:
-        livebuzz.base_url: ${var.base_url}
+        livebuzz.base_url: ${var.cloudflare_url}/livebuzz
         livebuzz.campaign: ${var.campaign}
         livebuzz.api_key: ${var.api_key}

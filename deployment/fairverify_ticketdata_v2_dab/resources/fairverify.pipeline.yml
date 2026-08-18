@@ -13,7 +13,7 @@ resources:
         - file:
             path: ../_generated_fairverify_ticketdata_v2_python_source.py
       configuration:
-        fairverify.base_url: ${var.base_url}
+        fairverify.base_url: ${var.cloudflare_url}/fairverify
         fairverify.event_id: ${var.event_id}
         fairverify.api_key: ${var.api_key}
         fairverify.access_token: ${var.access_token}

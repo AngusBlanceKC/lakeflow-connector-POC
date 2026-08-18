@@ -10,7 +10,7 @@ resources:
       development: true
       continuous: false
       configuration:
-        visit_create_v2.base_url: ${var.base_url}
+        visit_create_v2.base_url: ${var.cloudflare_url}/visit-create/create/v2
         visit_create_v2.api_key: ${var.api_key}
         visit_create_v2.expo_id: ${var.expo_id}
       libraries:

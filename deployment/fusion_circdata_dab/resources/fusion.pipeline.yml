@@ -13,7 +13,7 @@ resources:
         - file:
             path: ../_generated_fusion_python_source.py
       configuration:
-        fusion.base_url: ${var.base_url}
+        fusion.base_url: ${var.cloudflare_url}/fusion
         fusion.event_id: ${var.event_id}
         fusion.username: ${var.username}
         fusion.password: ${var.password}

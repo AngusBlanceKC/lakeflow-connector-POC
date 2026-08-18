@@ -11,9 +11,9 @@ variables:
   schema:
     description: Unity Catalog schema for Visit Create tables.
     default: default
-  base_url:
-    description: Public Visit Create v2 API root.
-    default: https://faced-switches-exclusive-suggested.trycloudflare.com/create/v2
+  cloudflare_url:
+    description: Shared Cloudflare URL for the local API gateway.
+    default: https://faced-switches-exclusive-suggested.trycloudflare.com
   api_key:
     description: Visit Create API key used as the Basic Auth username.
     default: demo-api-key
