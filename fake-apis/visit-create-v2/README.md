@@ -9,6 +9,11 @@ intended for connector development and demos, not production use.
 - Health check: https://navy-affordable-devoted-gathered.trycloudflare.com/visit-create/health
 - API base URL: https://navy-affordable-devoted-gathered.trycloudflare.com/visit-create/create/v2
 
+```bash
+export CLOUDFLARE_URL="https://navy-affordable-devoted-gathered.trycloudflare.com"
+curl -u demo-api-key: "${CLOUDFLARE_URL}/visit-create/create/v2/expos"
+```
+
 This is a temporary Cloudflare Quick Tunnel and works only while the local
 simulator, gateway, and `cloudflared` processes are running.
 

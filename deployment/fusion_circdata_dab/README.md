@@ -7,6 +7,13 @@ keep the tunnel running.
 
 Current Cloudflare URL: `https://navy-affordable-devoted-gathered.trycloudflare.com`
 
+Set it before deployment:
+
+```bash
+export CLOUDFLARE_URL="https://navy-affordable-devoted-gathered.trycloudflare.com"
+databricks bundle deploy -t dev --var="cloudflare_url=${CLOUDFLARE_URL}" --profile DEFAULT
+```
+
 From this directory:
 
 ```bash

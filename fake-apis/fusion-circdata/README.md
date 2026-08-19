@@ -12,6 +12,14 @@ username, password, install name, and API key.
 - People endpoint: https://navy-affordable-devoted-gathered.trycloudflare.com/fusion/People
 - Event tickets endpoint: https://navy-affordable-devoted-gathered.trycloudflare.com/fusion/VisitorIntegrationApi/api/EventTicket
 
+```bash
+export CLOUDFLARE_URL="https://navy-affordable-devoted-gathered.trycloudflare.com"
+curl -u demo-user:demo-password \
+  -H 'X-Fusion-Install-Name: demo-install' \
+  -H 'X-Fusion-API-Key: demo-api-key' \
+  "${CLOUDFLARE_URL}/fusion/People?eventId=demo-event-001&limit=2"
+```
+
 This is a temporary Cloudflare Quick Tunnel and works only while the local
 simulator, gateway, and `cloudflared` processes are running.
 

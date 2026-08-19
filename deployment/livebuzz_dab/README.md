@@ -13,3 +13,10 @@ keep the tunnel process running. The bundle includes a full four-table
 pipeline.
 
 Current Cloudflare URL: `https://navy-affordable-devoted-gathered.trycloudflare.com`
+
+Set it before deployment:
+
+```bash
+export CLOUDFLARE_URL="https://navy-affordable-devoted-gathered.trycloudflare.com"
+databricks bundle deploy -t dev --var="cloudflare_url=${CLOUDFLARE_URL}" --profile DEFAULT
+```

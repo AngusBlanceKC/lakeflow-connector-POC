@@ -10,6 +10,12 @@ wire contract.
 - API base URL: https://navy-affordable-devoted-gathered.trycloudflare.com/fairverify
 - Health check: [FairVerify health](https://navy-affordable-devoted-gathered.trycloudflare.com/fairverify/health)
 - Tickets endpoint: https://navy-affordable-devoted-gathered.trycloudflare.com/fairverify/api/v2/events/demo-event-001/tickets
+
+```bash
+export CLOUDFLARE_URL="https://navy-affordable-devoted-gathered.trycloudflare.com"
+curl -H 'X-FairVerify-API-Key: demo-fairverify-api-key' \
+  "${CLOUDFLARE_URL}/fairverify/api/v2/events/demo-event-001/tickets?limit=10"
+```
 - Event ID: `demo-event-001`
 - API key: `demo-fairverify-api-key`
 - Bearer token: `demo-fairverify-access-token`

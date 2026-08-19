@@ -10,6 +10,12 @@ generation.
 - API base URL: https://navy-affordable-devoted-gathered.trycloudflare.com/gevme
 - Health check: [GEVME health](https://navy-affordable-devoted-gathered.trycloudflare.com/gevme/health)
 - Attendees endpoint: https://navy-affordable-devoted-gathered.trycloudflare.com/gevme/apiv2/api/events/demo-event-001/attendees
+
+```bash
+export CLOUDFLARE_URL="https://navy-affordable-devoted-gathered.trycloudflare.com"
+curl -H 'Authorization: Bearer demo-access-token' \
+  "${CLOUDFLARE_URL}/gevme/apiv2/api/events/demo-event-001/attendees?limit=10"
+```
 - Event ID: `demo-event-001`
 - OAuth client ID: `demo-client-id`
 - OAuth client secret: `demo-client-secret`

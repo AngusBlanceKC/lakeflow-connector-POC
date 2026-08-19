@@ -51,6 +51,12 @@ The currently running Quick Tunnel is:
 
 https://navy-affordable-devoted-gathered.trycloudflare.com
 
+Set the shared shell variable once and use it for every API:
+
+```bash
+export CLOUDFLARE_URL="https://navy-affordable-devoted-gathered.trycloudflare.com"
+```
+
 Routes through the shared gateway are `/visit-create`, `/fusion`, `/gevme`,
 `/fairverify`, `/showoff`, and `/livebuzz`.
 
@@ -71,6 +77,20 @@ gateway:
 The script starts all six APIs, the gateway, and one temporary tunnel. Use the
 single generated URL with the path shown in the table above. Keep the script
 running while Databricks jobs execute.
+
+After `run_quick_tunnels.sh` has started, retrieve the generated URL with:
+
+```bash
+export CLOUDFLARE_URL="$(rg -o 'https://[[:alnum:]-]+\.trycloudflare\.com' "${TMPDIR:-/tmp}/fake-api-cloudflare-logs"/*.tunnel.log | tail -1)"
+echo "${CLOUDFLARE_URL}"
+```
+
+For a manually started tunnel, save its output first and extract the URL:
+
+```bash
+cloudflared tunnel --url http://127.0.0.1:8000 2>&1 | tee /tmp/fake-api-cloudflare.log
+export CLOUDFLARE_URL="$(rg -o 'https://[[:alnum:]-]+\.trycloudflare\.com' /tmp/fake-api-cloudflare.log | tail -1)"
+```
 
 ## Stable named tunnel for all APIs
 
@@ -109,12 +129,12 @@ running while Databricks jobs execute.
 The connector base URLs will share one hostname and use different paths:
 
 ```text
-Visit Create: https://api.example.com/visit-create/create/v2
-Fusion:       https://api.example.com/fusion
-GEVME:        https://api.example.com/gevme
-FairVerify:   https://api.example.com/fairverify
-ShowOff:      https://api.example.com/showoff
-LiveBuzz:     https://api.example.com/livebuzz
+Visit Create: ${CLOUDFLARE_URL}/visit-create/create/v2
+Fusion:       ${CLOUDFLARE_URL}/fusion
+GEVME:        ${CLOUDFLARE_URL}/gevme
+FairVerify:   ${CLOUDFLARE_URL}/fairverify
+ShowOff:      ${CLOUDFLARE_URL}/showoff
+LiveBuzz:     ${CLOUDFLARE_URL}/livebuzz
 ```
 
 Replace `example.com` with a domain managed in your Cloudflare account. A

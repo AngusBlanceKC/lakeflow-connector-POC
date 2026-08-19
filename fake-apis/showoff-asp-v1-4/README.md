@@ -7,6 +7,12 @@ Persistent FastAPI simulator for the official ShowOff API v1.4 contract.
 - API base URL: https://navy-affordable-devoted-gathered.trycloudflare.com/showoff
 - Health check: [ShowOff health](https://navy-affordable-devoted-gathered.trycloudflare.com/showoff/health)
 - Visitors endpoint: https://navy-affordable-devoted-gathered.trycloudflare.com/showoff/public/visitors
+
+```bash
+export CLOUDFLARE_URL="https://navy-affordable-devoted-gathered.trycloudflare.com"
+curl -H 'Authorization: Bearer demo-showoff-access-token' \
+  "${CLOUDFLARE_URL}/showoff/public/visitors?O=0&L=10"
+```
 - API key: `demo-showoff-api-key`
 - API secret: `demo-showoff-api-secret`
 - Bearer token: `demo-showoff-access-token`

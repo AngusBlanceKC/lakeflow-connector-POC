@@ -18,7 +18,7 @@ new URL at deploy time:
 
 ```bash
 databricks bundle deploy -t dev --profile DEFAULT \
-  --var="cloudflare_url=https://navy-affordable-devoted-gathered.trycloudflare.com" \
+  --var="cloudflare_url=${CLOUDFLARE_URL}" \
   --var="api_key=demo-api-key"
 ```
 

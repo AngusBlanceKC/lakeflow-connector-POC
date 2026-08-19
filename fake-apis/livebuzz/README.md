@@ -41,6 +41,12 @@ seconds, capped at 250 generated attendees. Set
 - Cloudflare base URL: https://navy-affordable-devoted-gathered.trycloudflare.com/livebuzz
 - Public health check: [LiveBuzz health](https://navy-affordable-devoted-gathered.trycloudflare.com/livebuzz/health)
 - Public exhibitors endpoint: https://navy-affordable-devoted-gathered.trycloudflare.com/livebuzz/campaign/demo-event-2026/api/exhibitors
+
+```bash
+export CLOUDFLARE_URL="https://navy-affordable-devoted-gathered.trycloudflare.com"
+curl -H 'X-API-Key: demo-livebuzz-api-key' \
+  "${CLOUDFLARE_URL}/livebuzz/campaign/demo-event-2026/api/exhibitors?limit=2&offset=0"
+```
 - Demo API key: `demo-livebuzz-api-key`
 - Demo bearer: `demo-livebuzz-bearer`
 - Campaign: `demo-event-2026`
