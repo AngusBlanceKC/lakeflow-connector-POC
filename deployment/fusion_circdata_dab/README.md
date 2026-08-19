@@ -5,12 +5,12 @@ The public Fusion integration API is private, so the defaults target the local
 simulator. For Databricks, replace `base_url` with a Cloudflare tunnel URL and
 keep the tunnel running.
 
-Current Cloudflare URL: `https://navy-affordable-devoted-gathered.trycloudflare.com`
+Current Cloudflare URL: `https://<cloudflareURL>`
 
 Set it before deployment:
 
 ```bash
-export CLOUDFLARE_URL="https://navy-affordable-devoted-gathered.trycloudflare.com"
+export CLOUDFLARE_URL="$(rg -o 'https://[[:alnum:]-]+\.trycloudflare\.com' "${TMPDIR:-/tmp}/fake-api-cloudflare-logs"/*.tunnel.log | tail -1)"
 databricks bundle deploy -t dev --var="cloudflare_url=${CLOUDFLARE_URL}" --profile DEFAULT
 ```
 

@@ -7,13 +7,13 @@ username, password, install name, and API key.
 
 ## Current public API
 
-- Cloudflare base URL: https://navy-affordable-devoted-gathered.trycloudflare.com/fusion
-- Health check: https://navy-affordable-devoted-gathered.trycloudflare.com/fusion/health
-- People endpoint: https://navy-affordable-devoted-gathered.trycloudflare.com/fusion/People
-- Event tickets endpoint: https://navy-affordable-devoted-gathered.trycloudflare.com/fusion/VisitorIntegrationApi/api/EventTicket
+- Cloudflare base URL: `https://<cloudflareURL>/fusion`
+- Health check: `https://<cloudflareURL>/fusion/health`
+- People endpoint: `https://<cloudflareURL>/fusion/People`
+- Event tickets endpoint: `https://<cloudflareURL>/fusion/VisitorIntegrationApi/api/EventTicket`
 
 ```bash
-export CLOUDFLARE_URL="https://navy-affordable-devoted-gathered.trycloudflare.com"
+export CLOUDFLARE_URL="$(rg -o 'https://[[:alnum:]-]+\.trycloudflare\.com' "${TMPDIR:-/tmp}/fake-api-cloudflare-logs"/*.tunnel.log | tail -1)"
 curl -u demo-user:demo-password \
   -H 'X-Fusion-Install-Name: demo-install' \
   -H 'X-Fusion-API-Key: demo-api-key' \

@@ -7,12 +7,12 @@ generation.
 
 ## Access and links
 
-- API base URL: https://navy-affordable-devoted-gathered.trycloudflare.com/gevme
-- Health check: [GEVME health](https://navy-affordable-devoted-gathered.trycloudflare.com/gevme/health)
-- Attendees endpoint: https://navy-affordable-devoted-gathered.trycloudflare.com/gevme/apiv2/api/events/demo-event-001/attendees
+- API base URL: `https://<cloudflareURL>/gevme`
+- Health check: `https://<cloudflareURL>/gevme/health`
+- Attendees endpoint: `https://<cloudflareURL>/gevme/apiv2/api/events/demo-event-001/attendees`
 
 ```bash
-export CLOUDFLARE_URL="https://navy-affordable-devoted-gathered.trycloudflare.com"
+export CLOUDFLARE_URL="$(rg -o 'https://[[:alnum:]-]+\.trycloudflare\.com' "${TMPDIR:-/tmp}/fake-api-cloudflare-logs"/*.tunnel.log | tail -1)"
 curl -H 'Authorization: Bearer demo-access-token' \
   "${CLOUDFLARE_URL}/gevme/apiv2/api/events/demo-event-001/attendees?limit=10"
 ```

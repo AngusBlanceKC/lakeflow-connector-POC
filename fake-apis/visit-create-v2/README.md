@@ -5,12 +5,12 @@ intended for connector development and demos, not production use.
 
 ## Current public API
 
-- Cloudflare base URL: https://navy-affordable-devoted-gathered.trycloudflare.com/visit-create
-- Health check: https://navy-affordable-devoted-gathered.trycloudflare.com/visit-create/health
-- API base URL: https://navy-affordable-devoted-gathered.trycloudflare.com/visit-create/create/v2
+- Cloudflare base URL: `https://<cloudflareURL>/visit-create`
+- Health check: `https://<cloudflareURL>/visit-create/health`
+- API base URL: `https://<cloudflareURL>/visit-create/create/v2`
 
 ```bash
-export CLOUDFLARE_URL="https://navy-affordable-devoted-gathered.trycloudflare.com"
+export CLOUDFLARE_URL="$(rg -o 'https://[[:alnum:]-]+\.trycloudflare\.com' "${TMPDIR:-/tmp}/fake-api-cloudflare-logs"/*.tunnel.log | tail -1)"
 curl -u demo-api-key: "${CLOUDFLARE_URL}/visit-create/create/v2/expos"
 ```
 

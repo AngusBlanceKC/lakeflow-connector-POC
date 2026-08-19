@@ -49,12 +49,12 @@ cloudflared tunnel --url http://127.0.0.1:8000
 
 The currently running Quick Tunnel is:
 
-https://navy-affordable-devoted-gathered.trycloudflare.com
+https://<cloudflareURL>
 
 Set the shared shell variable once and use it for every API:
 
 ```bash
-export CLOUDFLARE_URL="https://navy-affordable-devoted-gathered.trycloudflare.com"
+export CLOUDFLARE_URL="https://<cloudflareURL>"
 ```
 
 Routes through the shared gateway are `/visit-create`, `/fusion`, `/gevme`,
@@ -84,6 +84,9 @@ After `run_quick_tunnels.sh` has started, retrieve the generated URL with:
 export CLOUDFLARE_URL="$(rg -o 'https://[[:alnum:]-]+\.trycloudflare\.com' "${TMPDIR:-/tmp}/fake-api-cloudflare-logs"/*.tunnel.log | tail -1)"
 echo "${CLOUDFLARE_URL}"
 ```
+
+Use `${CLOUDFLARE_URL}` in the API URLs below. For example, the FairVerify
+endpoint is `${CLOUDFLARE_URL}/fairverify`.
 
 For a manually started tunnel, save its output first and extract the URL:
 

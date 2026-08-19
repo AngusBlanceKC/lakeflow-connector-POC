@@ -7,12 +7,12 @@ wire contract.
 
 ## Access and links
 
-- API base URL: https://navy-affordable-devoted-gathered.trycloudflare.com/fairverify
-- Health check: [FairVerify health](https://navy-affordable-devoted-gathered.trycloudflare.com/fairverify/health)
-- Tickets endpoint: https://navy-affordable-devoted-gathered.trycloudflare.com/fairverify/api/v2/events/demo-event-001/tickets
+- API base URL: `https://<cloudflareURL>/fairverify`
+- Health check: `https://<cloudflareURL>/fairverify/health`
+- Tickets endpoint: `https://<cloudflareURL>/fairverify/api/v2/events/demo-event-001/tickets`
 
 ```bash
-export CLOUDFLARE_URL="https://navy-affordable-devoted-gathered.trycloudflare.com"
+export CLOUDFLARE_URL="$(rg -o 'https://[[:alnum:]-]+\.trycloudflare\.com' "${TMPDIR:-/tmp}/fake-api-cloudflare-logs"/*.tunnel.log | tail -1)"
 curl -H 'X-FairVerify-API-Key: demo-fairverify-api-key' \
   "${CLOUDFLARE_URL}/fairverify/api/v2/events/demo-event-001/tickets?limit=10"
 ```
