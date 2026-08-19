@@ -85,7 +85,7 @@ running while Databricks jobs execute.
 After `run_quick_tunnels.sh` has started, retrieve the generated URL with:
 
 ```bash
-export CLOUDFLARE_URL="$(rg -o 'https://[[:alnum:]-]+\.trycloudflare\.com' "${TMPDIR:-/tmp}/fake-api-cloudflare-logs"/*.tunnel.log | tail -1)"
+export CLOUDFLARE_URL="$(find "${TMPDIR:-/tmp}/fake-api-cloudflare-logs" -type f -name '*.tunnel.log' -exec rg -o 'https://[[:alnum:]-]+\.trycloudflare\.com' {} + 2>/dev/null | tail -1)"
 echo "${CLOUDFLARE_URL}"
 ```
 
@@ -97,6 +97,13 @@ For a manually started tunnel, save its output first and extract the URL:
 ```bash
 cloudflared tunnel --url http://127.0.0.1:8000 2>&1 | tee /tmp/fake-api-cloudflare.log
 export CLOUDFLARE_URL="$(rg -o 'https://[[:alnum:]-]+\.trycloudflare\.com' /tmp/fake-api-cloudflare.log | tail -1)"
+```
+
+If you started the tunnel in another terminal without saving its output, set
+the current value directly:
+
+```bash
+export CLOUDFLARE_URL="https://navy-affordable-devoted-gathered.trycloudflare.com"
 ```
 
 ## Stable named tunnel for all APIs

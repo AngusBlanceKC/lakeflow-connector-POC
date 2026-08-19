@@ -13,7 +13,7 @@ username, password, install name, and API key.
 - Event tickets endpoint: `https://<cloudflareURL>/fusion/VisitorIntegrationApi/api/EventTicket`
 
 ```bash
-export CLOUDFLARE_URL="$(rg -o 'https://[[:alnum:]-]+\.trycloudflare\.com' "${TMPDIR:-/tmp}/fake-api-cloudflare-logs"/*.tunnel.log | tail -1)"
+export CLOUDFLARE_URL="$(find "${TMPDIR:-/tmp}/fake-api-cloudflare-logs" -type f -name '*.tunnel.log' -exec rg -o 'https://[[:alnum:]-]+\.trycloudflare\.com' {} + 2>/dev/null | tail -1)"
 curl -u demo-user:demo-password \
   -H 'X-Fusion-Install-Name: demo-install' \
   -H 'X-Fusion-API-Key: demo-api-key' \

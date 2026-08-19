@@ -43,7 +43,7 @@ seconds, capped at 250 generated attendees. Set
 - Public exhibitors endpoint: `https://<cloudflareURL>/livebuzz/campaign/demo-event-2026/api/exhibitors`
 
 ```bash
-export CLOUDFLARE_URL="$(rg -o 'https://[[:alnum:]-]+\.trycloudflare\.com' "${TMPDIR:-/tmp}/fake-api-cloudflare-logs"/*.tunnel.log | tail -1)"
+export CLOUDFLARE_URL="$(find "${TMPDIR:-/tmp}/fake-api-cloudflare-logs" -type f -name '*.tunnel.log' -exec rg -o 'https://[[:alnum:]-]+\.trycloudflare\.com' {} + 2>/dev/null | tail -1)"
 curl -H 'X-API-Key: demo-livebuzz-api-key' \
   "${CLOUDFLARE_URL}/livebuzz/campaign/demo-event-2026/api/exhibitors?limit=2&offset=0"
 ```

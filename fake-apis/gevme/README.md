@@ -12,7 +12,7 @@ generation.
 - Attendees endpoint: `https://<cloudflareURL>/gevme/apiv2/api/events/demo-event-001/attendees`
 
 ```bash
-export CLOUDFLARE_URL="$(rg -o 'https://[[:alnum:]-]+\.trycloudflare\.com' "${TMPDIR:-/tmp}/fake-api-cloudflare-logs"/*.tunnel.log | tail -1)"
+export CLOUDFLARE_URL="$(find "${TMPDIR:-/tmp}/fake-api-cloudflare-logs" -type f -name '*.tunnel.log' -exec rg -o 'https://[[:alnum:]-]+\.trycloudflare\.com' {} + 2>/dev/null | tail -1)"
 curl -H 'Authorization: Bearer demo-access-token' \
   "${CLOUDFLARE_URL}/gevme/apiv2/api/events/demo-event-001/attendees?limit=10"
 ```

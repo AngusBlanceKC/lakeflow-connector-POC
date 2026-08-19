@@ -9,7 +9,7 @@ Persistent FastAPI simulator for the official ShowOff API v1.4 contract.
 - Visitors endpoint: `https://<cloudflareURL>/showoff/public/visitors`
 
 ```bash
-export CLOUDFLARE_URL="$(rg -o 'https://[[:alnum:]-]+\.trycloudflare\.com' "${TMPDIR:-/tmp}/fake-api-cloudflare-logs"/*.tunnel.log | tail -1)"
+export CLOUDFLARE_URL="$(find "${TMPDIR:-/tmp}/fake-api-cloudflare-logs" -type f -name '*.tunnel.log' -exec rg -o 'https://[[:alnum:]-]+\.trycloudflare\.com' {} + 2>/dev/null | tail -1)"
 curl -H 'Authorization: Bearer demo-showoff-access-token' \
   "${CLOUDFLARE_URL}/showoff/public/visitors?O=0&L=10"
 ```

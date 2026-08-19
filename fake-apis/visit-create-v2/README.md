@@ -10,7 +10,7 @@ intended for connector development and demos, not production use.
 - API base URL: `https://<cloudflareURL>/visit-create/create/v2`
 
 ```bash
-export CLOUDFLARE_URL="$(rg -o 'https://[[:alnum:]-]+\.trycloudflare\.com' "${TMPDIR:-/tmp}/fake-api-cloudflare-logs"/*.tunnel.log | tail -1)"
+export CLOUDFLARE_URL="$(find "${TMPDIR:-/tmp}/fake-api-cloudflare-logs" -type f -name '*.tunnel.log' -exec rg -o 'https://[[:alnum:]-]+\.trycloudflare\.com' {} + 2>/dev/null | tail -1)"
 curl -u demo-api-key: "${CLOUDFLARE_URL}/visit-create/create/v2/expos"
 ```
 
