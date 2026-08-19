@@ -62,6 +62,10 @@ Routes through the shared gateway are `/visit-create`, `/fusion`, `/gevme`,
 
 This URL is temporary and changes when the Quick Tunnel process restarts.
 
+In this repository, `<cloudflareURL>` means the hostname printed by
+`cloudflared`, without `https://` and without an API route suffix. For example,
+the FairVerify URL is `https://<cloudflareURL>/fairverify`.
+
 Copy the generated `https://*.trycloudflare.com` URL and append
 `/visit-create/create/v2` for the Visit Create connector `base_url`. Keep this
 terminal running. The URL changes when the process stops and Quick Tunnels are

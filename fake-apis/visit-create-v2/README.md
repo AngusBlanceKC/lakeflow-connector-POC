@@ -17,6 +17,13 @@ curl -u demo-api-key: "${CLOUDFLARE_URL}/visit-create/create/v2/expos"
 This is a temporary Cloudflare Quick Tunnel and works only while the local
 simulator, gateway, and `cloudflared` processes are running.
 
+Here, `<cloudflareURL>` means the temporary hostname printed by Cloudflare,
+without `https://` or the API route suffix. Get it with:
+
+```bash
+export CLOUDFLARE_URL="$(rg -o 'https://[[:alnum:]-]+\.trycloudflare\.com' "${TMPDIR:-/tmp}/fake-api-cloudflare-logs"/*.tunnel.log | tail -1)"
+```
+
 Implemented behavior:
 
 - Basic Authentication: API key is the username; password is ignored.

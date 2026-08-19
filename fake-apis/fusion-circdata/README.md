@@ -23,6 +23,13 @@ curl -u demo-user:demo-password \
 This is a temporary Cloudflare Quick Tunnel and works only while the local
 simulator, gateway, and `cloudflared` processes are running.
 
+Here, `<cloudflareURL>` means the temporary hostname printed by Cloudflare,
+without `https://` or the API route suffix. Get it with:
+
+```bash
+export CLOUDFLARE_URL="$(rg -o 'https://[[:alnum:]-]+\.trycloudflare\.com' "${TMPDIR:-/tmp}/fake-api-cloudflare-logs"/*.tunnel.log | tail -1)"
+```
+
 ## Start
 
 ```bash

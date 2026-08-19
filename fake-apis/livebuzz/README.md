@@ -55,3 +55,10 @@ curl -H 'X-API-Key: demo-livebuzz-api-key' \
 The Quick Tunnel URL only works while `cloudflared` is running. See
 [`fake-apis/cloudflare/README.md`](../cloudflare/README.md) for the free
 `trycloudflare.com` setup.
+
+Here, `<cloudflareURL>` means the temporary hostname printed by Cloudflare,
+without `https://` or the API route suffix. Get it with:
+
+```bash
+export CLOUDFLARE_URL="$(rg -o 'https://[[:alnum:]-]+\.trycloudflare\.com' "${TMPDIR:-/tmp}/fake-api-cloudflare-logs"/*.tunnel.log | tail -1)"
+```
