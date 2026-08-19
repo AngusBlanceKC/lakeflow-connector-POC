@@ -10,7 +10,6 @@ intended for connector development and demos, not production use.
 - API base URL: `https://<cloudflareURL>/visit-create/create/v2`
 
 ```bash
-export CLOUDFLARE_URL="$(find "${TMPDIR:-/tmp}/fake-api-cloudflare-logs" -type f -name '*.tunnel.log' -exec rg -o 'https://[[:alnum:]-]+\.trycloudflare\.com' {} + 2>/dev/null | tail -1)"
 curl -u demo-api-key: "${CLOUDFLARE_URL}/visit-create/create/v2/expos"
 ```
 
@@ -18,11 +17,8 @@ This is a temporary Cloudflare Quick Tunnel and works only while the local
 simulator, gateway, and `cloudflared` processes are running.
 
 Here, `<cloudflareURL>` means the temporary hostname printed by Cloudflare,
-without `https://` or the API route suffix. Get it with:
-
-```bash
-export CLOUDFLARE_URL="$(rg -o 'https://[[:alnum:]-]+\.trycloudflare\.com' "${TMPDIR:-/tmp}/fake-api-cloudflare-logs"/*.tunnel.log | tail -1)"
-```
+without `https://` or the API route suffix. Set `CLOUDFLARE_URL` manually from
+that terminal output before running the authenticated example.
 
 Implemented behavior:
 

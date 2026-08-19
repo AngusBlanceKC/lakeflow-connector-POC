@@ -9,7 +9,6 @@ Persistent FastAPI simulator for the official ShowOff API v1.4 contract.
 - Visitors endpoint: `https://<cloudflareURL>/showoff/public/visitors`
 
 ```bash
-export CLOUDFLARE_URL="$(find "${TMPDIR:-/tmp}/fake-api-cloudflare-logs" -type f -name '*.tunnel.log' -exec rg -o 'https://[[:alnum:]-]+\.trycloudflare\.com' {} + 2>/dev/null | tail -1)"
 curl -H 'Authorization: Bearer demo-showoff-access-token' \
   "${CLOUDFLARE_URL}/showoff/public/visitors?O=0&L=10"
 ```
@@ -22,11 +21,8 @@ The Quick Tunnel URL only works while `cloudflared` is running. These credential
 are intentionally fake and local-only.
 
 Here, `<cloudflareURL>` means the temporary hostname printed by Cloudflare,
-without `https://` or the API route suffix. Get it with:
-
-```bash
-export CLOUDFLARE_URL="$(rg -o 'https://[[:alnum:]-]+\.trycloudflare\.com' "${TMPDIR:-/tmp}/fake-api-cloudflare-logs"/*.tunnel.log | tail -1)"
-```
+without `https://` or the API route suffix. Set `CLOUDFLARE_URL` manually from
+that terminal output before running the authenticated example.
 
 ## Run locally
 

@@ -12,7 +12,6 @@ wire contract.
 - Tickets endpoint: `https://<cloudflareURL>/fairverify/api/v2/events/demo-event-001/tickets`
 
 ```bash
-export CLOUDFLARE_URL="$(find "${TMPDIR:-/tmp}/fake-api-cloudflare-logs" -type f -name '*.tunnel.log' -exec rg -o 'https://[[:alnum:]-]+\.trycloudflare\.com' {} + 2>/dev/null | tail -1)"
 curl -H 'X-FairVerify-API-Key: demo-fairverify-api-key' \
   "${CLOUDFLARE_URL}/fairverify/api/v2/events/demo-event-001/tickets?limit=10"
 ```
@@ -25,11 +24,8 @@ The Quick Tunnel URL only works while `cloudflared` is running. These credential
 are intentionally fake and local-only.
 
 Here, `<cloudflareURL>` means the temporary hostname printed by Cloudflare,
-without `https://` or the API route suffix. Get it with:
-
-```bash
-export CLOUDFLARE_URL="$(rg -o 'https://[[:alnum:]-]+\.trycloudflare\.com' "${TMPDIR:-/tmp}/fake-api-cloudflare-logs"/*.tunnel.log | tail -1)"
-```
+without `https://` or the API route suffix. Set `CLOUDFLARE_URL` manually from
+that terminal output before running the authenticated example.
 
 ## Run locally
 

@@ -10,7 +10,6 @@ Current Cloudflare URL: `https://<cloudflareURL>`
 Set it before deployment:
 
 ```bash
-export CLOUDFLARE_URL="$(rg -o 'https://[[:alnum:]-]+\.trycloudflare\.com' "${TMPDIR:-/tmp}/fake-api-cloudflare-logs"/*.tunnel.log | tail -1)"
 databricks bundle deploy -t dev --var="cloudflare_url=${CLOUDFLARE_URL}" --profile DEFAULT
 ```
 

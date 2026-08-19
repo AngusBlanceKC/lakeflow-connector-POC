@@ -13,7 +13,6 @@ username, password, install name, and API key.
 - Event tickets endpoint: `https://<cloudflareURL>/fusion/VisitorIntegrationApi/api/EventTicket`
 
 ```bash
-export CLOUDFLARE_URL="$(find "${TMPDIR:-/tmp}/fake-api-cloudflare-logs" -type f -name '*.tunnel.log' -exec rg -o 'https://[[:alnum:]-]+\.trycloudflare\.com' {} + 2>/dev/null | tail -1)"
 curl -u demo-user:demo-password \
   -H 'X-Fusion-Install-Name: demo-install' \
   -H 'X-Fusion-API-Key: demo-api-key' \
@@ -24,11 +23,8 @@ This is a temporary Cloudflare Quick Tunnel and works only while the local
 simulator, gateway, and `cloudflared` processes are running.
 
 Here, `<cloudflareURL>` means the temporary hostname printed by Cloudflare,
-without `https://` or the API route suffix. Get it with:
-
-```bash
-export CLOUDFLARE_URL="$(rg -o 'https://[[:alnum:]-]+\.trycloudflare\.com' "${TMPDIR:-/tmp}/fake-api-cloudflare-logs"/*.tunnel.log | tail -1)"
-```
+without `https://` or the API route suffix. Set `CLOUDFLARE_URL` manually from
+that terminal output before running the authenticated example.
 
 ## Start
 
