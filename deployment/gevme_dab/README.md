@@ -8,7 +8,7 @@ Run from this directory:
 
 ```bash
 databricks bundle validate -t dev --profile DEFAULT
-databricks bundle deploy -t dev --var='cloudflare_url=https://<quick-tunnel>.trycloudflare.com' --profile DEFAULT
+databricks bundle deploy -t dev --var='cloudflare_url=https://navy-affordable-devoted-gathered.trycloudflare.com' --profile DEFAULT
 ```
 
 The API simulator is [../../fake-apis/gevme/README.md](../../fake-apis/gevme/README.md),

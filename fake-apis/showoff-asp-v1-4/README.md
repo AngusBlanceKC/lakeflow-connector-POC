@@ -4,16 +4,16 @@ Persistent FastAPI simulator for the official ShowOff API v1.4 contract.
 
 ## Access and links
 
-- API base URL: `<start-cloudflare-quick-tunnel>`
-- Health check: [`<quick-tunnel>/health`](<quick-tunnel>/health)
-- Databricks pipeline: `<deploy-the-showoff-dab-to-get-link>`
+- API base URL: https://navy-affordable-devoted-gathered.trycloudflare.com/showoff
+- Health check: [ShowOff health](https://navy-affordable-devoted-gathered.trycloudflare.com/showoff/health)
+- Visitors endpoint: https://navy-affordable-devoted-gathered.trycloudflare.com/showoff/public/visitors
 - API key: `demo-showoff-api-key`
 - API secret: `demo-showoff-api-secret`
 - Bearer token: `demo-showoff-access-token`
 - Site UUID: `demo-site-001`
 
-Quick Tunnel URLs only work while `cloudflared` is running. These credentials are
-intentionally fake and local-only. Replace the placeholders after deployment.
+The Quick Tunnel URL only works while `cloudflared` is running. These credentials
+are intentionally fake and local-only.
 
 ## Run locally
 

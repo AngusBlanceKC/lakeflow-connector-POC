@@ -5,6 +5,16 @@ Circdata. Public integration documentation identifies the `People` and
 `VisitorIntegrationApi/api/EventTicket` streams and requires an event ID,
 username, password, install name, and API key.
 
+## Current public API
+
+- Cloudflare base URL: https://navy-affordable-devoted-gathered.trycloudflare.com/fusion
+- Health check: https://navy-affordable-devoted-gathered.trycloudflare.com/fusion/health
+- People endpoint: https://navy-affordable-devoted-gathered.trycloudflare.com/fusion/People
+- Event tickets endpoint: https://navy-affordable-devoted-gathered.trycloudflare.com/fusion/VisitorIntegrationApi/api/EventTicket
+
+This is a temporary Cloudflare Quick Tunnel and works only while the local
+simulator, gateway, and `cloudflared` processes are running.
+
 ## Start
 
 ```bash

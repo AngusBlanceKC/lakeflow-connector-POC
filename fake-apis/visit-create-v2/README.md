@@ -3,6 +3,15 @@
 A local FastAPI simulator for the documented Visit Create JSON API v2. It is
 intended for connector development and demos, not production use.
 
+## Current public API
+
+- Cloudflare base URL: https://navy-affordable-devoted-gathered.trycloudflare.com/visit-create
+- Health check: https://navy-affordable-devoted-gathered.trycloudflare.com/visit-create/health
+- API base URL: https://navy-affordable-devoted-gathered.trycloudflare.com/visit-create/create/v2
+
+This is a temporary Cloudflare Quick Tunnel and works only while the local
+simulator, gateway, and `cloudflared` processes are running.
+
 Implemented behavior:
 
 - Basic Authentication: API key is the username; password is ignored.

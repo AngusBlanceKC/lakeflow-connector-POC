@@ -5,7 +5,7 @@ Lakeflow pipeline.
 
 ```bash
 databricks bundle validate -t dev --profile DEFAULT
-databricks bundle deploy -t dev --var='cloudflare_url=https://<quick-tunnel>.trycloudflare.com' --profile DEFAULT
+databricks bundle deploy -t dev --var='cloudflare_url=https://navy-affordable-devoted-gathered.trycloudflare.com' --profile DEFAULT
 ```
 
 The paired simulator README is [here](../../fake-apis/fairverify-ticketdata-v2/README.md)

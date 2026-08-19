@@ -5,6 +5,8 @@ The public Fusion integration API is private, so the defaults target the local
 simulator. For Databricks, replace `base_url` with a Cloudflare tunnel URL and
 keep the tunnel running.
 
+Current Cloudflare URL: `https://navy-affordable-devoted-gathered.trycloudflare.com`
+
 From this directory:
 
 ```bash

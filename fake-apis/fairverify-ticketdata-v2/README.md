@@ -7,16 +7,16 @@ wire contract.
 
 ## Access and links
 
-- API base URL: `<start-cloudflare-quick-tunnel>`
-- Health check: [`<quick-tunnel>/health`](<quick-tunnel>/health)
-- Databricks pipeline: `<deploy-the-fairverify-dab-to-get-link>`
+- API base URL: https://navy-affordable-devoted-gathered.trycloudflare.com/fairverify
+- Health check: [FairVerify health](https://navy-affordable-devoted-gathered.trycloudflare.com/fairverify/health)
+- Tickets endpoint: https://navy-affordable-devoted-gathered.trycloudflare.com/fairverify/api/v2/events/demo-event-001/tickets
 - Event ID: `demo-event-001`
 - API key: `demo-fairverify-api-key`
 - Bearer token: `demo-fairverify-access-token`
 - Required headers: `X-FairVerify-API-Key` or `Authorization: Bearer ...`
 
-Quick Tunnel URLs only work while `cloudflared` is running. These credentials are
-intentionally fake and local-only. Replace the placeholders after deployment.
+The Quick Tunnel URL only works while `cloudflared` is running. These credentials
+are intentionally fake and local-only.
 
 ## Run locally
 

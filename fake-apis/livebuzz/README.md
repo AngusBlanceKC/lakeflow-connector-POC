@@ -38,12 +38,14 @@ seconds, capped at 250 generated attendees. Set
 
 - Local API: `http://127.0.0.1:8050`
 - Health check: [http://127.0.0.1:8050/health](http://127.0.0.1:8050/health)
-- Databricks main pipeline: `<deploy-livebuzz-dab-and-add-link>`
+- Cloudflare base URL: https://navy-affordable-devoted-gathered.trycloudflare.com/livebuzz
+- Public health check: [LiveBuzz health](https://navy-affordable-devoted-gathered.trycloudflare.com/livebuzz/health)
+- Public exhibitors endpoint: https://navy-affordable-devoted-gathered.trycloudflare.com/livebuzz/campaign/demo-event-2026/api/exhibitors
 - Demo API key: `demo-livebuzz-api-key`
 - Demo bearer: `demo-livebuzz-bearer`
 - Campaign: `demo-event-2026`
 - Required header: `X-API-Key: demo-livebuzz-api-key`
 
-Quick Tunnel URLs only work while `cloudflared` is running. See
+The Quick Tunnel URL only works while `cloudflared` is running. See
 [`fake-apis/cloudflare/README.md`](../cloudflare/README.md) for the free
 `trycloudflare.com` setup.

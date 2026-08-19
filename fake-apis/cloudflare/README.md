@@ -45,6 +45,17 @@ This is the quickest Databricks connectivity test:
 cloudflared tunnel --url http://127.0.0.1:8000
 ```
 
+### Current public URL
+
+The currently running Quick Tunnel is:
+
+https://navy-affordable-devoted-gathered.trycloudflare.com
+
+Routes through the shared gateway are `/visit-create`, `/fusion`, `/gevme`,
+`/fairverify`, `/showoff`, and `/livebuzz`.
+
+This URL is temporary and changes when the Quick Tunnel process restarts.
+
 Copy the generated `https://*.trycloudflare.com` URL and append
 `/visit-create/create/v2` for the Visit Create connector `base_url`. Keep this
 terminal running. The URL changes when the process stops and Quick Tunnels are

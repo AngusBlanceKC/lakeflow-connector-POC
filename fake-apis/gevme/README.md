@@ -7,17 +7,16 @@ generation.
 
 ## Access and links
 
-- API base URL: `<start-cloudflare-quick-tunnel>`
-- Health check: [`<start-cloudflare-quick-tunnel>/health`](<start-cloudflare-quick-tunnel>/health)
-- Databricks pipeline: `<deploy-the-gevme-dab-to-get-link>`
+- API base URL: https://navy-affordable-devoted-gathered.trycloudflare.com/gevme
+- Health check: [GEVME health](https://navy-affordable-devoted-gathered.trycloudflare.com/gevme/health)
+- Attendees endpoint: https://navy-affordable-devoted-gathered.trycloudflare.com/gevme/apiv2/api/events/demo-event-001/attendees
 - Event ID: `demo-event-001`
 - OAuth client ID: `demo-client-id`
 - OAuth client secret: `demo-client-secret`
 - Demo access token: `demo-access-token`
 - Required header: `Authorization: Bearer demo-access-token`
 
-Quick Tunnel URLs only work while the `cloudflared` process is running. Replace
-the placeholders above after starting the simulator and deploying the DAB.
+The Quick Tunnel URL only works while the `cloudflared` process is running.
 These credentials are intentionally fake and local-only.
 
 ## Run locally
